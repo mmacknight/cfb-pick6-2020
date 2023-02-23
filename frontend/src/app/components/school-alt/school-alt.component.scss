@@ -1,0 +1,58 @@
+.school {
+  width: 100%;
+  padding: 10px;
+  position: relative;
+  z-index: 1;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-weight: 800;
+  font-size: 12px;
+}
+
+.school.mini {
+  padding: 6px;
+  font-size: 11px;
+}
+
+.school-container {
+  color: white;
+  position: relative;
+  font-family: var(--ion-font-family);
+  font-weight: 750;
+  border-radius: 5px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  display: flex;
+  overflow: hidden;
+  font-size: 14px;
+  z-index: 1;
+}
+
+
+.school-alt {
+  width: 100%;
+  position: relative;
+  padding: 10px;
+  font-family: var(--ion-font-family);
+  border-radius: 15px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+  display: flex;
+  z-index: 1;
+}
+
+.number {
+  text-align: right;
+  width: 10%;
+  position: relative;
+  padding: 7px;
+  font-size: 20px;
+  min-width: 45px;
+  color: var(--ion-color-dark-tint);
+  background: white;
+}
+
+.number.mini {
+  font-size: 17px;
+  padding: 4px;
+  min-width: 35px;
+}

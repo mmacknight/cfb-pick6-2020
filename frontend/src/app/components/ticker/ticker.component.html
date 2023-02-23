@@ -1,0 +1,35 @@
+<div class="ticker-container" [class.phone]="device_mode == 'phone'">
+  <div class="header-bar">
+    <div class="header-trapezoid" [class.gold]="router.url.includes('throne')" *ngIf="device_mode != 'phone'">
+    </div>
+    <div [class.back]="device_mode == 'phone'" [class.active]="pickIn" [class.logo]="device_mode == 'desktop'" (click)="linkDashboard()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </div>
+    <div class="site-title" (click)="linkDashboard()" *ngIf="device_mode != 'phone'">
+      CFB PICK6
+    </div>
+    <div class="alert" [hidden]="!drafting && device_mode == 'desktop'" [class.active]="pickIn">
+      PICK IS IN
+    </div>
+    <div class="school" [hidden]="!drafting && device_mode == 'desktop'" [class.active]="pickIn" [style.background]="pickedTeam['primary_color']">
+      <h1 [style.color]="pickedTeam['text_color']">{{pickedTeam['school'] | uppercase}}</h1>
+    </div>
+
+    <div *ngIf="0" class="alert request-loader">
+      <span>BREAKING NEWS</span>
+    </div>
+    <h1
+      [hidden]="device_mode == 'phone'"
+      class="ticker-text"
+      [class.left]="active == i"
+      [class.right]="active != i"
+      *ngFor="let story of stories; let i = index;"
+    >
+    {{story}}
+    </h1>
+
+  </div>
+  <div *ngIf="device_mode != 'phone'" class="profile-button" (click)="linkProfile()" [class.goldbutton]="router.url.includes('throne')">
+    <ion-icon slot="icon-only" name="person-circle"></ion-icon>
+  </div>
+</div>

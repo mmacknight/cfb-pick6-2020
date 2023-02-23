@@ -1,0 +1,8 @@
+<div class="school-container">
+  <div class="school" [class.mini]="mini" [style.color]="school.text_color" [style.background]="school['primary_color']">
+    {{school['school'] | uppercase}}
+  </div>
+  <div [hidden]="number == '-'" class="number" [class.mini]="mini">
+    {{number}}
+  </div>
+</div>

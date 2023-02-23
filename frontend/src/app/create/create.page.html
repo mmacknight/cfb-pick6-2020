@@ -1,0 +1,28 @@
+<ion-header *ngIf="device_mode == 'phone'" mode="ios" scrollY="false">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">CFB PICK6</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollEvents="true" [class.phone]="device_mode == 'phone'" [class.desktop]="device_mode == 'desktop'">
+  <div [formGroup]="leagueForm" (ngSubmit)="createLeague()" class="league-form">
+    <h1>Create a new league</h1>
+    <ion-list lines="none">
+
+      <ion-item>
+        <ion-label position="floating">League Name</ion-label>
+        <ion-input type="text" formControlName="name" required></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label position="floating">League Info</ion-label>
+        <ion-textarea type="text" formControlName="info"></ion-textarea>
+      </ion-item>
+
+      <ion-button expand="block" type="submit" (click)="createLeague()" mode="ios">Create League</ion-button>
+    </ion-list>
+  </div>
+</ion-content>

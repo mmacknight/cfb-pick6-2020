@@ -1,0 +1,285 @@
+ion-content {
+  --background: var(--ion-color-light);
+}
+
+.photo-input-container {
+  width: 200px;
+  height: 200px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 10;
+  background-image: linear-gradient(rgba(34, 34, 34, 0.7),rgba(34, 34, 34, 0.7));
+  ion-icon {
+    font-size: 150px;
+    padding: 25px;
+    color: var(--ion-color-light);
+  }
+}
+
+.photo-input {
+  width: 200px;
+  height: 200px;
+  opacity: 0;
+  position: absolute;
+  left: 0;
+  top: 0;
+  cursor: pointer;
+  z-index: 11;
+}
+
+.league-form {
+  color: var(--ion-color-dark-tint);
+}
+
+.schools {
+  height: 800px;
+  overflow-y: scroll;
+}
+
+.school-box {
+  border-radius: 5px;
+  border-style: solid;
+  width: 95%;
+  padding: 3%;
+  margin: 2.5%;
+}
+
+.add-school {
+  color: white;
+  -webkit-text-stroke: 0.5px gray;
+}
+
+.team-card {
+  width: 100%;
+  margin: 4px;
+  border-radius: 20px;
+}
+
+.container-0 {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  margin-top: 44px;
+  padding: 0px 60px 40px 120px;
+  h1 {
+    width: 100%;
+  }
+  .exit-button {
+    margin: 20px 0 40px 0;
+  }
+}
+
+.container-1 {
+  width: 66.7%;
+  padding: 0 20px 0 0;
+}
+
+.container-2 {
+  width: 33.3%;
+}
+
+.teams {
+  width: 100%;
+  position: relative;
+  h1 {
+   padding: 16px 0;
+  }
+}
+
+
+.invites-container {
+  margin: 20px 0 0 40px;
+  min-height: 615px;
+  h1 {
+    color: white;
+    background: var(--ion-color-primary);
+    padding: 7px;
+  }
+}
+
+.invites {
+  width: 100%;
+}
+
+.settings-card {
+  position: relative;
+  width: 100%;
+  display: flex;
+  margin: 0;
+  height: 200px;
+  margin: 20px 0;
+}
+
+.settings-card.draft {
+  .accent {
+    position: relative;
+    height: 200px;
+    width: 200px;
+    min-width: 200px;
+    padding: 20px;
+    background: var(--ion-color-primary);
+    h1 {
+      color: white;
+    }
+  }
+  .content {
+    padding: 20px;
+  }
+}
+
+.league-data {
+  display: block;
+  overflow: visible;
+  z-index: 2;
+  width: 100%;
+  font-size: 20px;
+  padding: 25px 57px 25px 25px;
+}
+
+.league-info {
+  font-family: var(--ion-font-family);
+  font-size: 16px;
+  padding: 10px 0px 0px 0px;
+}
+
+.league-image {
+  width: 200px;
+  height: 200px;
+  min-width: 200px;
+  min-height: 200px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+  background-position: center;
+  background-size: cover;
+  z-index: 2;
+}
+
+.league-name {
+  font-family: var(--ion-font-family);
+  font-size: 28px;
+  font-weight: 700;
+  padding: 0px 0px 0px 0px;
+}
+
+.league-admin {
+  font-family: var(--ion-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0px 20px 0px 20px;
+  text-align: left;
+}
+
+.league-team-count {
+  font-family: var(--ion-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  padding: 0px 20px 0px 20px;
+  text-align: left;
+}
+
+.item-container {
+  display: flex;
+}
+
+.school-container {
+  width: 90%;
+}
+
+.icon-container {
+  width: 10%;
+  text-align: center;
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.settings-icon {
+    position: absolute;
+    top: 25px;
+    right: 25px;
+    font-size: 32px;
+    color: var(--ion-color-medium);
+    cursor: pointer;
+}
+
+.settings-icon:hover {
+    color: var(--ion-color-primary-tint);
+}
+
+.edit-button {
+  position: absolute;
+  right: 12.25px;
+  top: 12.25px;
+  h2 {
+    color: var(--ion-color-primary-contrast);
+  }
+}
+
+.done-button {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  h2 {
+    color: var(--ion-color-primary-contrast);
+  }
+}
+
+.team-box {
+  display: flex;
+  ion-icon {
+    font-size: 25px;
+    min-width: 30px;
+    padding: 33.25px 5px;
+  }
+}
+
+.phone {
+  .title {
+    font-size: 16px;
+  }
+  .container-0 {
+    padding: 0;
+  }
+  .exit-button {
+    display: none;
+  }
+  .container-1, .container-2 {
+    padding: 8px;
+    width: 100%;
+  }
+  .settings-card {
+    display: block;
+    height: auto;
+  }
+  .settings-card.draft {
+    .accent {
+      width: 100%;
+      height: auto;
+      padding: 10px;
+    }
+    .content {
+      display: flex;
+      justify-content: center;
+    }
+  }
+  .segment-container {
+    position: absolute;
+    top: 44px;
+    z-index: 10;
+    width: 100%;
+    padding: 1% 2.5%;
+    background: var(--ion-color-light);
+    transition: background 0s;
+    transition-delay: 0s;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    ion-segment {
+      width: 100%;
+    }
+  }
+  .invites-container {
+    margin: 0;
+  }
+}

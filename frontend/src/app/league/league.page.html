@@ -1,0 +1,246 @@
+<ion-header *ngIf="device_mode == 'phone'" class="phone" scrollY="false">
+  <div class="background" [style.backgroundImage]="'url(https://s3.us-east-2.amazonaws.com/cfbpick6.images/league_'+route.snapshot.paramMap.get('id')+')'"></div>
+  <ion-toolbar mode="ios" color="league" [class.inactive]="offTop || seg != 'home'">
+    <ion-buttons slot="primary">
+      <ion-button [routerLink]="['/throne',route.snapshot.paramMap.get('id')]" *ngIf="currentUser && currentUser['id'] == champion">
+        👑
+      </ion-button>
+      <ion-button [routerLink]="['/settings',route.snapshot.paramMap.get('id')]" *ngIf="userService.currentUserValue.id == league['league_admin']">
+        <ion-icon slot="icon-only" name="settings-sharp"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-back-button defaultHref="/"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="title">
+      {{league.name | uppercase}}
+    </ion-title>
+
+  </ion-toolbar>
+  <div class="segment-container" [class.inactive]="offTop || seg != 'home'">
+    <ion-segment [(ngModel)]="seg" (ionChange)="segmentNav(seg)">
+      <ion-segment-button value="home" [class.home_segment]="!offTop">
+        <ion-label>HOME</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="standings">
+        <ion-label>STANDINGS</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="scoreboard">
+        <ion-label>SCORES</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="mysquad">
+        <ion-label>MY SQUAD</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+  <div class="header-image" [class.inactive]="offTop || seg != 'home'">
+    <img id="league_img" [src]="'https://s3.us-east-2.amazonaws.com/cfbpick6.images/league_'+route.snapshot.paramMap.get('id')" [class.inactive]="offTop || seg != 'home'" onerror="document.getElementById('league_img').classList.add('inactive')">
+  </div>
+
+</ion-header>
+
+<ion-content #content (ionScroll)="setOfftop($event)" scrollEvents="true" fullscreen="true" [class.phone]="device_mode == 'phone'" [class.desktop]="device_mode == 'desktop'">
+  <div class="league-container" [class.inactive]="offTop || seg != 'home'">
+    <h2 class="league-admin" *ngIf="!offTop && device_mode == 'phone' && seg == 'home'"><ion-icon slot="icon-only" name="person"></ion-icon> {{league.first+' '+league.last | uppercase}}</h2>
+    <div class="league-info" *ngIf="device_mode == 'phone' && seg == 'home'">{{league.league_info}}</div>
+    <div *ngIf="device_mode == 'desktop'" class="league-bar-background" [style.backgroundImage]="'url(https://s3.us-east-2.amazonaws.com/cfbpick6.images/league_'+route.snapshot.paramMap.get('id')+')'">
+      <ion-button *ngIf="device_mode == 'desktop'" mode="md" color="light" shape="round" routerLink="/" fragment="myleagues" routerDirection="back" class="dashboard-button league-button">
+        <h2>RETURN TO DASHBOARD</h2>
+      </ion-button>
+      <div class="league-bar">
+      </div>
+      <div [style.backgroundImage]="'url(https://s3.us-east-2.amazonaws.com/cfbpick6.images/league_'+route.snapshot.paramMap.get('id')+')'" class="league-image"></div>
+      <div class="league-data">
+          <h2 class="league-admin"><ion-icon slot="icon-only" name="person"></ion-icon> {{league.first+' '+league.last | uppercase}}</h2>
+          <!-- <div class="league-team-count">
+          </div> -->
+        <h1 class="league-name">
+          {{league.name}}
+        </h1>
+        <div class="league-info">
+          {{league.league_info}}
+        </div>
+      </div>
+    </div>
+    <div class="nav-bar" *ngIf="device_mode == 'desktop'">
+      <a class="first-link nav-link" [class.active]="!router.url.includes('#') || router.url.includes('#home')" routerLink="." fragment="home"><h2>HOME</h2></a>
+      <a class="nav-link" [class.active]="router.url.includes('#standings')" routerLink="." fragment="standings"><h2>STANDINGS</h2></a>
+      <a class="nav-link" [class.active]="router.url.includes('#scoreboard')" routerLink="." fragment="scoreboard"><h2>SCOREBOARD</h2></a>
+      <a class="nav-link" [class.active]="router.url.includes('#mysquad')" routerLink="." fragment="mysquad"><h2>MY SQUAD</h2></a>
+      <a class="nav-link" [routerLink]="['/settings',route.snapshot.paramMap.get('id')]" *ngIf="currentUser && currentUser['id'] == league['league_admin']"><h2>SETTINGS</h2></a>
+      <a class="nav-link" [routerLink]="['/throne',route.snapshot.paramMap.get('id')]" *ngIf="currentUser && currentUser['id'] == champion"><h2>👑</h2></a>
+      <div class="week-select-box" *ngIf="router.url.includes('#scoreboard') || router.url.includes('#mysquad')">
+        <ion-select  [(ngModel)]="week" interface="popover" (ionChange)=this.getGames(season,week) class="week-select">
+          <ion-select-option *ngFor="let w of weeks" [value]="w.game_week"><h2>{{w.game_week == 99 ? 'Bowls' : w.game_week == 100 ? 'National Championship' : 'Week '+w.game_week  | uppercase}}</h2></ion-select-option>
+        </ion-select>
+      </div>
+    </div>
+
+    <div class="home-box league-content" *ngIf="!router.url.includes('#') || router.url.includes('#home')">
+      <div class="home-messages-list">
+        <ion-item button="true" detail="true" lines="none" *ngFor="let story of stories; let i = index; trackBy: trackByFunction" (click)="selectStory(i)">
+          <ion-card>
+            <ion-card-header>
+              <h1>{{story.heading}}</h1>
+              <h2>by {{story.first+' '+story.last}}</h2>
+            </ion-card-header>
+            <ion-card-content
+              [style.maxHeight]="selectedStory == i ? '800px' : '0px'"
+              [style.paddingBottom]="selectedStory == i ? '13px' : '0px'"
+              class="home-message"
+              >{{story.story}}</ion-card-content>
+          </ion-card>
+        </ion-item>
+        <ion-item button="true" detail="true" lines="none" (click)="selectStory(stories.length)">
+          <ion-card>
+            <ion-card-header>
+              <h1>WELCOME TO CFB PICK6</h1>
+              <h2>by CFB PICK6</h2>
+            </ion-card-header>
+            <ion-card-content
+              [style.maxHeight]="selectedStory == stories.length ? '400px' : '0px'"
+              [style.paddingBottom]="selectedStory == stories.length ? '13px' : '0px'"
+              class="home-message"
+            >Welcome to the League Home Page! Here you can toggle between league standings, squad scoreboards, your squad, league settings, and potentially the 👑. If your squad holds the first place spot in the league, the 👑 will appear and grant you access to the Champions Lounge. Become league leader and discover Champions Lounge privileges!</ion-card-content>
+          </ion-card>
+        </ion-item>
+      </div>
+      <div class="home-standings-list" *ngIf="device_mode == 'desktop'">
+        <ion-card class="column-header">
+          <h1>LEADERBOARD</h1>
+        </ion-card>
+        <div [hidden]="i > 2" lines="none" *ngFor="let team of teams; let i = index" (click)="selectTeam(i)">
+          <ion-card class="standing-card">
+            <div class="header-box">
+              <div class="header-team" [class.first]="i == 0" [class.second]='i == 1' [class.third]='i == 2'>
+                <h1 class="team-name">{{team.team_name}}</h1>
+                <h2>{{team.first}} {{team.last}}</h2>
+              </div>
+            </div>
+          </ion-card>
+        </div>
+      </div>
+    </div>
+    <div [hidden]="!router.url.includes('#standings')" class="standings-list league-content">
+
+      <h1 class="heading">STANDINGS</h1>
+      <div class="standing-box" *ngFor="let team of teams; let i = index; trackBy: trackByFunction" (click)="selectTeam(i)">
+        <div class="rank-box">
+          <h1 class="rank">{{team.user_id == champion ? '👑' : team.rank == teams.length && team.rank > 1 ? '🚽' : team.rank}}</h1>
+        </div>
+        <ion-card class="standing-card">
+          <div class="header-box">
+            <div class="header-team" [class.first]="i == 0" [class.second]='i == 1' [class.third]='i == 2'>
+              <h1 class="team-name">{{team.team_name}}</h1>
+              <h2>{{team.first}} {{team.last}}</h2>
+            </div>
+            <div class="header-team-stats">
+              <div class="team-wins-box">
+                <b class="wins-label">WINS</b>
+                <div class="wins"><h1>{{teamWins(team.user_id)}}</h1></div>
+              </div>
+
+            </div>
+          </div>
+        </ion-card>
+        <div class="box-content" [style.height]="selectedTeam == i ? '270px' : '0px'">
+          <div class="school-div" *ngFor="let school of schools[team.user_id]; trackBy: trackByFunction">
+            <app-school-alt [getSchool]="school" [getNumber]="school.wins"></app-school-alt>
+          </div>
+
+        </div>
+      </div>
+    </div>
+    <div [hidden]="!router.url.includes('#scoreboard')" class="scoreboard" (scroll)="slideEvent($event)">
+      <div #slides class="slide-container" (scroll)="slideEvent($event)">
+
+        <div *ngFor="let team of teams; let i = index; trackBy: trackByFunction" [style.width]="platform.width() + 'px'" class="scoreboard-container">
+          <div class="myteams">
+            <ion-card mode="ios" class="team-score" [class.score_display]="score_display">
+              <ion-icon [name]="score_display ? 'chevron-up-circle' : 'chevron-down-circle'" color="primary" class="switch-button" *ngIf="device_mode == 'phone'" (click)="toggleScoreDisplay()"></ion-icon>
+              <ion-select *ngIf="device_mode == 'phone'" [(ngModel)]="week" interface="action-sheet" (ionChange)=this.getGames(season,week) class="week-select">
+                <ion-select-option *ngFor="let w of weeks" [value]="w.game_week"><h2>{{w.game_week == 99 ? 'BOWLS' : w.game_week == 100 ? 'National Championship' : 'Week '+w.game_week  | uppercase}}</h2></ion-select-option>
+              </ion-select>
+              <div class="score-header">
+                <h1>{{team.team_name}}</h1>
+                <h2>{{team.first}} {{team.last}}</h2>
+              </div>
+              <ion-item class="team-score-item">
+                <h2>THIS WEEK:</h2> <h1>0 - 0</h1>
+              </ion-item>
+              <ion-item class="team-score-item">
+                <h2>WINS:</h2> <h1>{{team.wins}}</h1>
+              </ion-item>
+              <div class="school-div" *ngFor="let school of schools[team.user_id]">
+                <app-school-alt [getSchool]="school" [getNumber]="school.wins"></app-school-alt>
+              </div>
+            </ion-card>
+            <div class="myteams-scoreboard" [class.score_display]="score_display">
+              <div class="myteams-score-game" *ngFor="let school of schools[team.user_id]; trackBy: trackByFunction">
+                <app-score [inp]="[games[school.id],school,school.id, device_mode == 'phone', false]"></app-score>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="marker-box" [hidden]="device_mode != 'desktop'">
+        <div *ngFor="let team of teams; let i = index" class="mark" [class.first]="i == 0" [class.last]="i == teams.length-1" [class.active]="i == (slideOffset + platform.width()/2 - (slideOffset + platform.width()/2) % platform.width() ) / platform.width()">
+        </div>
+      </div>
+      <ion-fab class="left-arrow" color="primary" *ngIf="device_mode == 'desktop'">
+        <ion-fab-button (click)="slideButton(-1)" [disabled]="slideOffset <= platform.width() * 0.5">
+          <ion-icon name="arrow-back"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+      <ion-fab class="right-arrow" color="primary" *ngIf="device_mode == 'desktop'">
+        <ion-fab-button (click)="slideButton(1)" [disabled]="slideOffset >= platform.width() * (teams.length - 1.5)">
+          <ion-icon name="arrow-forward"></ion-icon>
+        </ion-fab-button>
+      </ion-fab>
+
+    </div>
+
+
+    <div class="myteams league-content" [hidden]="!router.url.includes('#mysquad')">
+      <ion-card mode="ios" class="team-score" >
+        <ion-icon [hidden]="editName" button="true" name="settings-sharp" class="settings-icon" (click)="toggleEditName()" ></ion-icon>
+
+        <div class="score-header">
+          <h1 [hidden]="editName">{{my_team.team_name}}</h1>
+          <h2 [hidden]="editName">{{my_team.first}} {{my_team.last}}</h2>
+          <ion-item class="form" [hidden]="!editName">
+            <ion-label position="floating"><b>SQUAD NAME</b></ion-label>
+            <ion-input #squad type="text" [value]="my_team.team_name" required></ion-input>
+          </ion-item>
+          <ion-icon [hidden]="!editName" button="true" name="close" color="secondary" class="squad-button" (click)="toggleEditName()" ></ion-icon>
+          <ion-icon [hidden]="!editName" button="true" name="checkmark" color="success" class="squad-button" (click)="changeSquadName(squad.value)" ></ion-icon>
+        </div>
+        <ion-item class="team-score-item">
+          <h2>THIS WEEK:</h2> <h1>0 - 0</h1>
+        </ion-item>
+        <ion-item class="team-score-item">
+          <h2>WINS:</h2> <h1>{{teamWins(my_team.user_id)}}</h1>
+        </ion-item>
+        <div class="school-div" *ngFor="let school of schools[my_team.user_id]">
+          <app-school-alt [getSchool]="school" [getNumber]="school.wins"></app-school-alt>
+        </div>
+      </ion-card>
+      <div class="myteams-scoreboard">
+        <div class="myteams-score-game" *ngFor="let school of schools[my_team.user_id]">
+          <app-score [inp]="[games[school.id],school,school.id,device_mode == 'phone', true]"></app-score>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</ion-content>
+<ion-footer class="phone footer" mode="ios" *ngIf="device_mode == 'phone' && router.url.includes('#scoreboard')" translucent="true">
+  <ion-toolbar >
+    <div class="marker-box">
+      <div *ngFor="let team of teams; let i = index" class="mark" [class.first]="i == 0" [class.last]="i == teams.length-1" [class.active]="i == (slideOffset + platform.width()/2 - (slideOffset + platform.width()/2) % platform.width() ) / platform.width()">
+      </div>
+    </div>
+  </ion-toolbar>
+</ion-footer>

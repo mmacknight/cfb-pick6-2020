@@ -1,0 +1,32 @@
+<ion-card mode="ios" *ngIf="game != null" [class.mini]="mini ">
+  <div class="game-detail">
+    <h1>{{game['shortDetail'].split(' EST')[0] | uppercase}}</h1>
+  </div>
+  <div class="schools-box">
+    <div class="school-div">
+      <app-school-alt [getMini]="mini" [getNumber]="game['away_score']" [getSchool]="{school: game['away_school'], primary_color: game['a_p'], secondary_color: game['a_s'], text_color: game['a_t']}"></app-school-alt>
+    </div>
+    <div class="school-div">
+      <app-school-alt [getMini]="mini" [getNumber]="game['home_score']" [getSchool]="{school: game['home_school'], primary_color: game['h_p'], secondary_color: game['h_s'], text_color: game['h_t']}"></app-school-alt>
+    </div>
+  </div>
+  <div class="game-detail-bottom">
+    <ion-icon *ngIf="game['shortDetail'].includes('Final') && good == game['winner']" color="success" name="checkmark-circle-outline"></ion-icon>
+    <ion-icon *ngIf="game['shortDetail'].includes('Final') && good != game['winner']" color="danger" name="close-outline"></ion-icon>
+    <app-pie [inp]="[myteam ? chart['school_id'] + 900 : chart['school_id'], chart['percent'], chart['color'], chart['color2'],'',mini]" *ngIf="!game['winner'] && !game['shortDetail'].includes('CANCEL') && !game['shortDetail'].includes('POSTP')"></app-pie>
+  </div>
+</ion-card>
+
+<ion-card mode="ios" *ngIf="game == null" class="bye-card" [class.mini]="mini">
+  <div class="game-detail">
+    <h1>BYE</h1>
+  </div>
+  <div class="schools-box">
+    <div class="school-div">
+      <app-school-alt [getMini]="mini" [getNumber]="'-'" [getSchool]="school"></app-school-alt>
+    </div>
+    <div class="school-div bye">
+      <app-school-alt [getMini]="mini" [getNumber]="'-'" [getSchool]="school"></app-school-alt>
+    </div>
+  </div>
+</ion-card>

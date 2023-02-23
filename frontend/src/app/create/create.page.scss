@@ -1,0 +1,23 @@
+.league-form {
+  width: 90%;
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+ion-content {
+  --background: var(--ion-color-light);
+}
+
+h1 {
+  font-family: var(--ion-font-family);
+  font-weight: 700;
+}
+
+ion-header.desktop {
+  display: flex;
+  height: var(--ion-header-height);
+}

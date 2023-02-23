@@ -1,0 +1,70 @@
+<ion-header *ngIf="device_mode == 'phone'">
+  <ion-toolbar color="primary">
+    <ion-title class="title">CFB PICK6</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scorllY="false" [class.phone]="device_mode == 'phone'" [class.desktop]="device_mode == 'desktop'">
+
+  <ion-item>
+    <ion-segment [(ngModel)]="authMode">
+      <ion-segment-button value="login">
+        <ion-label>LOGIN</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="register">
+        <ion-label>REGISTER</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </ion-item>
+
+  <div *ngIf="authMode == 'login'" [formGroup]="profileForm" (ngSubmit)="login()">
+    <ion-list lines="none">
+      <ion-item class="form">
+        <ion-label position="floating">USERNAME</ion-label>
+        <ion-input mode="md" type="text" formControlName="username" required></ion-input>
+      </ion-item>
+
+      <ion-item class="form">
+        <ion-label position="floating">PASSWORD</ion-label>
+        <ion-input mode="md" type="password" formControlName="password" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" mode="ios" shape="round" type="submit" (click)="login()"><h2>LOGIN</h2></ion-button>
+    </ion-list>
+  </div>
+
+  <div *ngIf="authMode == 'register'" [formGroup]="profileForm" (ngSubmit)="register()">
+    <ion-list>
+      <ion-item class="form">
+        <ion-label position="floating">FIRST NAME</ion-label>
+        <ion-input type="text" formControlName="first" required></ion-input>
+      </ion-item>
+
+      <ion-item class="form">
+        <ion-label position="floating">LAST NAME</ion-label>
+        <ion-input type="text" formControlName="last" required></ion-input>
+      </ion-item>
+
+      <ion-item class="form">
+        <ion-label position="floating">USERNAME</ion-label>
+        <ion-input type="text" formControlName="username" required></ion-input>
+      </ion-item>
+
+      <ion-item class="form">
+        <ion-label position="floating">PASSWORD</ion-label>
+        <ion-input type="password" formControlName="password" required></ion-input>
+      </ion-item>
+
+      <ion-item class="form">
+        <ion-label position="floating">EMAIL</ion-label>
+        <ion-input type="email" formControlName="email" required></ion-input>
+      </ion-item>
+
+      <ion-button expand="block" mode="ios" shape="round" type="submit" (click)="register()"><h2>REGISTER</h2></ion-button>
+    </ion-list>
+  </div>
+  <h2 class="error">{{error}}</h2>
+</ion-content>

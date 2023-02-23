@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title class="title">CFB PICK6</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-back-button defaultHref="/dashboard"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="article-container">
+    <div class="articles-list" *ngIf="mode == 0">
+      <ion-card button="true" class="article-sample" (click)="toggleNew()">
+        <ion-icon name="add-circle"></ion-icon><h1>NEW ARTICLE</h1>
+      </ion-card>
+      <ion-card *ngFor="let article of articles" button="true" class="article-sample" (click)="selectArticle(article)">
+        <h1>{{article.title}}</h1>
+        <ion-button expand="block" shape="round" size="small" mode="ios" (click)="toggleEdit(article)">EDIT</ion-button>
+      </ion-card>
+    </div>
+    <div class="article" [innerHTML]="mode == 0 ? sanitizer.bypassSecurityTrustHtml('<i>'+selectedArticle.tease+'</i>'+'<h4>'+selectedArticle.title+'</h4>'+ selectedArticle.content) : title && content ? sanitizer.bypassSecurityTrustHtml('<h4>'+title.value+'</h4>'+content.value) : ''">
+    </div>
+    <div [hidden]="mode == 0" [formGroup]="articleForm" (ngSubmit)="postArticle()" class="article-form">
+      <h1>Create a new CFB PICK6 league</h1>
+      <ion-list lines="none">
+
+        <ion-item>
+          <ion-label position="floating">Article Title</ion-label>
+          <ion-input #title type="text" formControlName="title" required></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Tease</ion-label>
+          <ion-textarea #tease type="text" rows="2" formControlName="tease"></ion-textarea>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Content</ion-label>
+          <ion-textarea #content type="text" rows="30" formControlName="content"></ion-textarea>
+        </ion-item>
+
+        <ion-button expand="block" shape="round" type="submit" *ngIf="mode == 1" (click)="postArticle()" mode="ios">POST ARTICLE</ion-button>
+        <ion-button expand="block" shape="round" type="submit" *ngIf="mode == 2" (click)="updateArticle()" mode="ios">UPDATE ARTICLE</ion-button>
+        <ion-button expand="block" color="secondary" shape="round" (click)="cancel()" mode="ios">CANCEL</ion-button>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

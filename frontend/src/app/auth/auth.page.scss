@@ -1,0 +1,20 @@
+ion-button {
+  h2 {
+    color: white;
+  }
+}
+
+ion-label {
+  font-weight: 700;
+  --color: var(--ion-color-medium);
+}
+ion-content.desktop {
+  --padding-top: 44px;
+  --padding-start: 20%;
+  --padding-end: 20%;
+}
+
+h2.error {
+  color: var(--ion-color-secondary);
+  padding: 0 5px;
+}

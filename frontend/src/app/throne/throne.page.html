@@ -1,0 +1,56 @@
+<ion-header *ngIf="device_mode == 'phone'" class="phone">
+  <ion-toolbar color="gold">
+    <ion-title class="title">CHAMPIONS LOUNGE</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [class.phone]="device_mode == 'phone'" [class.desktop]="device_mode == 'desktop'">
+  <div class="throne-header">
+    <ion-button *ngIf="device_mode == 'desktop'" shape="round" class="back-button" color="light" [routerLink]="['/league',route.snapshot.paramMap.get('id')]"><h2>RETURN TO LEAGUE</h2></ion-button>
+    <div class="throne-header-cover"></div>
+    <div class="throne-header-background"></div>
+    <div class="throne-header-text">
+      <div class="quote">
+        <h1 class="text">"Winning isn’t everything; <br *ngIf="device_mode == 'phone'">it's the only thing."</h1>
+        <h2 class="attribution">- Vince Lombardi</h2>
+      </div>
+      <h1 *ngIf="device_mode == 'desktop'">CHAMPIONS LOUNGE</h1>
+    </div>
+  </div>
+  <div class="throne-container">
+    <div class="throne-welcome">
+
+      <h1>WELCOME {{userService.currentUserValue.first | uppercase}},</h1>
+      <p>Champions Lounge is the most exclusive club in the college football world. By virtue of you being at the top of your PICK6 league, you have earned the right to enjoy the luxurious champions lounge in all its glory.</p>
+    </div>
+    <h1>THE SPOILS OF VICTORY...</h1>
+    <p>As the weekly Champion, you have the ability to exert dominance over the league. You are granted the ability to change the league picture and the opportunity to write a recap of your glorious ascension to the top, visible to all league members. Please enjoy the spoils of victory.</p>
+    <div class="bottom-container">
+      <div class="image-container">
+        <div [style.backgroundImage]="'url(https://s3.us-east-2.amazonaws.com/cfbpick6.images/league_'+route.snapshot.paramMap.get('id')+'?t='+photoTimestamp+')'" class="league-image"></div>
+        <img #preview id="preview" class="preview">
+        <div class="photo-input-container">
+          <input  type="file" accept=".jpg, .jpeg, .png, .jfif, .gif" (change)="fileUpload($event, preview)" class="photo-input" #photo>
+          <ion-icon name="image-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="form-container">
+        <ion-item>
+          <ion-label position="floating"><b>WEEK {{week}} HEADING:</b></ion-label>
+          <ion-input #heading class="content" [value]="old_story.heading" placeholder="Enter your heading here..."></ion-input>
+        </ion-item>
+        <!-- Textarea in an item with a floating label -->
+        <ion-item>
+          <ion-label position="floating"><b>CONTENT</b></ion-label>
+          <ion-textarea #story class="content" rows="8" placeholder="Write your recap here..." [value]="old_story.story"></ion-textarea>
+        </ion-item>
+      </div>
+    </div>
+    <div class="button-container">
+      <ion-button shape="round" class="cancel-button" color="dark" (click)="cancel(preview,heading,story)"><h2>RESET</h2></ion-button>
+      <ion-button shape="round" class="submit-button" color="gold" (click)="submit(heading.value,story.value)"><h2>SAVE</h2></ion-button>
+    </div>
+  </div>
+</ion-content>

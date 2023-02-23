@@ -1,0 +1,21 @@
+<div *ngIf="!mode || mode == 'full'" class="school-box">
+  <b class="school">{{school['school'] | uppercase}}</b>
+  <div class="trapezoid-background"  [style.backgroundColor]="school['secondary_color']">
+    <div class="trapezoid" [style.borderTopColor]="school['primary_color']" [style.color]="school['primary_color']">
+    </div>
+  </div>
+</div>
+<div *ngIf="mode == 'home'" class="school-box-home">
+  <b class="school-home">{{school['school'] | uppercase}}</b>
+  <div class="trapezoid-background-home"  [style.backgroundColor]="school['secondary_color']">
+    <div class="trapezoid-home" [style.borderTopColor]="school['primary_color']" [style.color]="school['primary_color']">
+    </div>
+  </div>
+</div>
+<div *ngIf="mode == 'half'" class="school-box-half">
+  <b class="school-half">{{school['school'] | uppercase}}</b>
+  <div class="trapezoid-background-half"  [style.backgroundColor]="school['secondary_color']">
+    <div class="trapezoid-half" [style.borderTopColor]="school['primary_color']" [style.color]="school['primary_color']">
+    </div>
+  </div>
+</div>

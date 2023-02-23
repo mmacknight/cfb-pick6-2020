@@ -1,0 +1,7 @@
+/node_modules
+/src/log/
+.env
+/www
+/src/keys
+/src/data
+.certbot

@@ -1,0 +1,325 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import '~@ionic/angular/css/display.css';
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+html {
+  background: whitesmoke;
+  color: var(--ion-color-dark-tint);
+  overflow-y: hidden;
+}
+
+body {
+  height: 100vh;
+  overflow-y: hidden;
+  position: fixed;
+}
+
+
+h1 {
+  font-size: 24px;
+  color: var(--ion-color-dark-tint);
+  font-family: var(--ion-font-family);
+  font-weight: 800;
+  margin: 0;
+}
+
+h2 {
+  font-size: 16px;
+  color: var(--ion-color-medium-shade);
+  font-family: var(--ion-font-family);
+  font-weight: 700;
+  margin: 0;
+
+}
+
+h3 {
+  font-size: 12px;
+  margin: 0;
+}
+
+
+h4 {
+  font-size: 32px;
+  font-weight: 900;
+}
+
+ion-header {
+  text-align: center;
+  .title {
+    color: var(--ion-color-light);
+    font-style: italic;
+    font-weight: 900;
+    font-size: 26px;
+  }
+}
+
+.remove-alert {
+  font-weight: 700;
+  color: var(--ion-color-secondary);
+}
+
+.ios ion-segment {
+  --background: var(--ion-color-light-shade);
+}
+
+ion-segment-button {
+  --indicator-color: var(--ion-color-primary);
+  font-size: 12px;
+  font-family: var(--ion-font-family);
+  font-weight: 700;
+  --margin-top: 0;
+  --margin-bottom: 0;
+  --margin-start: 0;
+  --margin-end: 0;
+  margin: 0px;
+}
+
+.ios ion-segment-button {
+  --indicator-transform: scale(1.05);
+  padding-inline-start: 0;
+  padding-inline-end: 0;
+  --color-checked: var(--ion-color-primary-contrast);
+  --color-focused: var(--ion-color-primary-contrast);
+  --transition: --indicator-color 0.5s;
+}
+
+.ios ion-segment-button.home_segment {
+  --indicator-color: var(--ion-color-primary-contrast);
+  --color-checked: var(--ion-color-primary);
+  --color-focused: var(--ion-color-primary);
+}
+
+.md ion-segment-button {
+  --color-checked: var(--ion-color-primary);
+  --color-focused: var(--ion-color-primary);
+}
+
+ion-card {
+  border-radius: 5px !important;
+}
+
+ion-card.round {
+  border-radius: 10px !important;
+}
+
+.desktop {
+  font-size: 18px;
+}
+
+.phone {
+  font-size: 12px;
+  h1 {
+    font-size: 20px
+  }
+  h2 {
+    font-size: 14px;
+  }
+  p {
+    font-size: 16px;
+  }
+}
+
+ion-button {
+  h2 {
+    color: white;
+  }
+}
+
+ion-button:focus, a:focus {
+  outline: none;
+}
+
+.column-header {
+  width: 100%;
+  background: var(--ion-color-primary);
+  margin: 0;
+  padding: 8px;
+  h1 {
+    color: white;
+  }
+}
+
+ion-content.desktop {
+  --padding-top: 44px;
+}
+
+p {
+  line-height: 1.6;
+  color: var(--ion-color-medium-shade);
+  text-align: justify;
+  font-size: 18px;
+}
+
+:root {
+
+  ion-item.form {
+    --background: var(--ion-color-light-tint);
+    --border-radius: 10px;
+    margin-bottom: 4px;
+    ion-label {
+      z-index: 100;
+    }
+  }
+
+}
+
+.list-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  margin: 0;
+  text-align: left;
+  background: var(--ion-color-primary);
+  justify-content: center;
+  h1 {
+    color: white;
+  }
+}
+
+
+
+/* ARTICLES */
+
+.article-container {
+  ol {
+    padding: 0;
+  }
+  li {
+    margin-left: 40px;
+    font-weight: 700;
+    color: var(--ion-color-medium-shade);
+  }
+  .school-ranking {
+    padding: 5px !important;
+    margin: 8px;
+    text-transform: uppercase;
+    font-weight: 900;
+    width: 300px;
+    border-radius: 5px;
+  }
+  .twitter-tweet {
+    margin-left: auto;
+    margin-right: auto;
+  }
+  padding: 100px 5% 100px 5%;
+  .backdrop {
+    background-image: url('/assets/images/home.jpg');
+    background-position: center;
+    background-size: cover;
+    width: 100%;
+    height: 300px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: flex-end;
+    padding: 0px 15% 0px 15%;
+    .backdrop-cover {
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      background-color: var(--ion-color-league);
+    }
+    h1.article-title {
+       color: white;
+       z-index: 2;
+       padding: 10px 0;
+       font-size: 36px;
+       font-weight: 800;
+    }
+  }
+
+
+  img {
+    width: 90%;
+    margin: 5%;
+  }
+
+  p {
+    line-height: 1.6;
+    color: var(--ion-color-medium-shade);
+    text-align: justify;
+    margin: 16px 0px 32px 0px;
+  }
+
+  iframe {
+    margin: 16px 0px 32px 0px;
+  }
+
+  .credentials {
+    display: flex;
+    align-items: center;
+    padding: 20px 0;
+    img.author-avatar {
+      width: 50px;
+      height: 50px;
+      margin: 0;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 50px;
+      overflow: hidden;
+    }
+    .text {
+      h2 {
+        padding-left: 10px;
+      }
+    }
+  }
+}
+
+.phone {
+  .article-container {
+    width: 100%;
+    padding: 100px 0;
+
+    p, h1, h2 {
+      padding-left: 20px;
+      padding-right: 20px;
+    }
+
+    .backdrop {
+      height: 100px;
+      padding: 0px 20px;
+
+      h1.article-title {
+        font-size: 24px;
+      }
+    }
+    .credentials {
+      padding-left: 20px;
+      img.author-avatar {
+        width: 40px;
+        height: 40px;
+      }
+    }
+  }
+
+}

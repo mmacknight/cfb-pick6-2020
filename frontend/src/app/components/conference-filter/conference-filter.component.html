@@ -1,0 +1,13 @@
+<ion-list>
+  <ion-item>
+    <ion-list-header>
+      <h1>FILTER</h1>
+    </ion-list-header>
+  </ion-item>
+  <ion-item button="true" detail="false">
+    <ion-label (click)="close('All')">All</ion-label>
+  </ion-item>
+  <ion-item *ngFor="let c of conf" button="true" detail="false">
+    <ion-label (click)="close(c)">{{c}}</ion-label>
+  </ion-item>
+</ion-list>

@@ -1,0 +1,139 @@
+<ion-header *ngIf="device_mode == 'phone'" class="phone">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="secondary">
+      <ion-button>
+        <ion-back-button [defaultHref]="['/league',route.snapshot.paramMap.get('id')]"></ion-back-button>
+      </ion-button>
+    </ion-buttons>
+    <ion-title class="title">LEAGUE SETTINGS</ion-title>
+  </ion-toolbar>
+  <div class="segment-container">
+    <ion-segment [(ngModel)]="seg">
+      <ion-segment-button value="info">
+        <ion-label>INFO</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="squads">
+        <ion-label>SQUADS</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="invites">
+        <ion-label>INVITES</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-header>
+
+
+<ion-content [class.phone]="device_mode == 'phone'">
+  <div class="container-0">
+    <ion-button color="primary" shape="round" class="exit-button" [routerLink]="['/league',route.snapshot.paramMap.get('id')]" routerDirection="back"><h2>EXIT SETTINGS</h2></ion-button>
+    <h1 *ngIf="device_mode == 'desktop'">LEAGUE SETTINGS PORTAL</h1>
+    <div class="container-1" *ngIf="device_mode == 'desktop' || seg == 'info' || seg == 'squads'">
+      <ion-card class="settings-card" *ngIf="device_mode == 'desktop' || seg == 'info'">
+        <div class="league-image" [style.backgroundImage]="'url(https://s3.us-east-2.amazonaws.com/cfbpick6.images/league_'+route.snapshot.paramMap.get('id')+'?'+photoTimestamp+')'">
+        </div>
+        <div [hidden]="!editLeague" class="photo-input-container">
+          <input  type="file" accept=".jpg, .jpeg, .png, .jfif, .gif" (change)="fileUpload($event)" class="photo-input" #photo>
+          <ion-icon name="image-outline"></ion-icon>
+        </div>
+        <div class="league-data" [hidden]="editLeague">
+          <div class="league-name">
+            <h1>{{league.name}}</h1>
+          </div>
+          <ion-icon slot="icon-only" button="true" name="settings-sharp" class="settings-icon" (click)="toggleEditLeague()"></ion-icon>
+          <div class="league-info">
+            {{league.league_info}}
+          </div>
+        </div>
+        <div [hidden]="!editLeague" [formGroup]="leagueForm" class="league-form">
+          <ion-list lines="none">
+
+            <ion-item>
+              <ion-label position="floating"><h2><b>League Name</b></h2></ion-label>
+              <ion-input type="text" formControlName="name" [value]="league.name" required></ion-input>
+            </ion-item>
+
+            <ion-item>
+              <ion-label position="floating"><h2><b>League Info</b></h2></ion-label>
+              <ion-textarea type="text" [value]="league.league_info" rows="4" cols="50" formControlName="info"></ion-textarea>
+            </ion-item>
+          </ion-list>
+          <ion-button shape="round" mode="md" color="primary" (click)="updateLeague(photo.value)" class="done-button"><h2>DONE</h2></ion-button>
+        </div>
+      </ion-card>
+      <ion-card class="settings-card draft" *ngIf="device_mode == 'desktop' || seg == 'info'">
+        <div class="accent">
+          <h1>DRAFT</h1>
+        </div>
+        <div class="content">
+          <h1 *ngIf="league.draft_order">{{league.current_pick <= league.draft_order.split('-') * league.team_count  ? 'CURRENT PICK: '+league.current_pick : 'DRAFT COMPLETE'}}</h1>
+          <ion-button shape="round" mode="md" color="secondary" (click)="createDraft()"><h2>CREATE DRAFT</h2></ion-button>
+          <ion-button shape="round" mode="md" color="primary" (click)="loadDraft()" [disabled]="league.draft_order && league.current_pick <= league.draft_order.split('-') * league.team_count"><h2>LOAD RESULTS</h2></ion-button>
+        </div>
+      </ion-card>
+      <div class="teams" *ngIf="device_mode == 'desktop' || seg == 'squads'">
+        <h1>{{selectedTeam.status ? 'MANUAL TEAM ASSIGNMENT' : 'SQUADS'}}</h1>
+        <ion-button *ngIf="!selectedTeam.status" color="primary" shape="round" mode="md" class="edit-button" (click)="toggleEditTeams()"><h2>{{editTeams ? 'DONE' : 'EDIT'}}</h2></ion-button>
+        <ion-button *ngIf="selectedTeam.status" color="primary" shape="round" mode="md" class="edit-button" (click)="resetValues()">
+          <h2>Done</h2>
+        </ion-button>
+        <div [hidden]="selectedTeam.status" *ngFor="let team of teams" class="team-box">
+          <ion-icon [hidden]="!editTeams" slot="start" button="true" name="remove-circle" color="danger" class="ionicon-button" (click)="removeAlert(team.user_id, team.team_name)"></ion-icon>
+          <ion-card class="team-card" button="true" (click)="selectTeam(team)">
+            <ion-card-header>
+              <h1>{{team.team_name}}</h1>
+              <h2>{{team.first+' '+team.last}}</h2>
+            </ion-card-header>
+          </ion-card>
+        </div>
+        <ion-item *ngIf="selectedTeam.status">
+          <ion-card class="team-card">
+            <ion-card-header>
+              <h1>{{selectedTeam.team.team_name}}</h1>
+              <h2>{{selectedTeam.team.username}}</h2>
+            </ion-card-header>
+              <div *ngFor="let school of selectedTeam.schools; let i=index;" class="item-container">
+                <div class="school-container">
+                  <app-school [getSchool]="school"></app-school>
+                </div>
+                <div class="icon-container">
+                  <ion-icon button="true" name="close-circle" class="ionicon-button" (click)="removeSchool(i)"></ion-icon>
+                </div>
+              </div>
+          </ion-card>
+        </ion-item>
+      </div>
+   </div>
+    <div class="container-2" *ngIf="device_mode == 'desktop' || seg == 'invites'">
+      <ion-list *ngIf="selectedTeam.status && selectedTeam.schools.length < 6" class="schools">
+        <ion-item *ngFor="let school of all_schools_array" button="true" detail="false" (click)="addSchool(school)" [disabled]="school.avail != 1">
+          <ion-label>
+            <b>{{school.school}}</b>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+      <ion-card class="invites-container" *ngIf="!selectedTeam.status">
+        <h1>INVITES</h1>
+        <ion-list class="invites">
+          <ion-item *ngFor="let invite of invites">
+            <ion-icon slot="end" color="danger" name="close" class="ionicon-button" (click)="deleteInvite(invite.id,invite.email)"></ion-icon>
+            <ion-label>
+              <h2><b>{{invite.first+' '+invite.last}}</b></h2>
+              <p>{{invite.username}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+        <ion-searchbar mode="ios" #search (ionChange)="search_users(search.value)"></ion-searchbar>
+        <ion-list *ngIf="search.value">
+          <ion-item *ngFor="let user of searchResults$ | async">
+            <ion-icon slot="end" color="success" name="add-sharp" class="ionicon-button" (click)="sendInvite(user.username,search)"></ion-icon>
+            <ion-label>
+              <h2><b>{{user.first+' '+user.last}}</b></h2>
+              <p>{{user.username}}</p>
+            </ion-label>
+          </ion-item>
+        </ion-list>
+      </ion-card>
+    </div>
+  </div>
+
+</ion-content>

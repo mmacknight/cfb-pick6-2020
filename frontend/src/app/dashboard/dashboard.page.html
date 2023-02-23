@@ -1,0 +1,121 @@
+<ion-header *ngIf="device_mode == 'phone'" mode="ios" scrollY="false">
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title class="title">CFB PICK6</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollEvents="true" [class.phone]="device_mode == 'phone'" [class.desktop]="device_mode == 'desktop'">
+
+  <div class="home-container">
+    <div class="nav-bar" *ngIf="device_mode == 'desktop'">
+      <a class="nav-link" [class.active]="!router.url.includes('#') || router.url.includes('#home')" routerLink="." fragment="home"><h2>HOME</h2></a>
+      <a class="nav-link" [class.active]="router.url.includes('#myleagues')" routerLink="." fragment="myleagues"><h2>MY LEAGUES</h2></a>
+      <a class="nav-link" [class.active]="router.url.includes('#media')" routerLink="." fragment="media"><h2>MEDIA</h2></a>
+      <a class="nav-link" [class.active]="router.url.includes('#about')" routerLink="." fragment="about"><h2>ABOUT</h2></a>
+      <a class="nav-link" [class.active]="router.url.includes('#contact')" routerLink="." fragment="contact"><h2>CONTACT</h2></a>
+    </div>
+    <app-contact #contact *ngIf="router.url.includes('#contact')"></app-contact>
+    <app-about #contact *ngIf="router.url.includes('#about')"></app-about>
+    <app-media #media *ngIf="router.url.includes('#media')" [articles_input]="articles" [device_input]="device_mode"></app-media>
+    <div class="grid-container" *ngIf="!router.url.includes('#') || router.url.includes('#home')">
+      <ion-card class="home-card round">
+        <div mode="md" class="home-card-graphic">
+          <div *ngIf="articles[selectedArticle]" class="card-header">
+            <img [class.activeArticle]="selectedArticle == i" [hidden]="i >= numArticles" [src]="'https://s3.us-east-2.amazonaws.com/cfbpick6.images/article-'+article['id']" class="article-graphic" *ngFor="let article of articles; let i = index; trackBy: trackByFunction">
+            <ion-icon [class.desktop]="device_mode == 'desktop'" name="chevron-back" (click)="changeAritcle(-1)" class="left"></ion-icon>
+            <ion-icon [class.desktop]="device_mode == 'desktop'" name="chevron-forward" (click)="changeAritcle(1)" class="right"></ion-icon>
+          </div>
+          <div *ngIf="articles.length > 0" class="home-card-bottom" [routerLink]="['/article', articles[selectedArticle]['id']]">
+            <h1 *ngIf="articles.length > 0" style="width: 100%;">
+              {{articles[selectedArticle]['title'] | uppercase}}
+            </h1>
+             {{articles[selectedArticle]['tease']}}
+          </div>
+        </div>
+        <div class="articles-container">
+          <h1>MEDIA</h1>
+          <div *ngFor="let article of articles; let i = index;" [hidden]="i >= numArticles" class="article" [routerLink]="['/article', article.id]">
+            <h2>{{article.title | uppercase}}</h2>
+          </div>
+        </div>
+      </ion-card>
+
+      <div class="news-container">
+        <h1>THIS WEEK IN COLLEGE FOOTBALL...</h1>
+        <div class="news-grid-container">
+          <div class="news-grid">
+            <ion-card class="news-score" [class.middle]="i % 3 == 1" [hidden]="i > 99" *ngFor="let game of games; let i = index">
+              <div class="inner-score">
+                <h1 class="game-status">{{game.shortDetail | uppercase}}</h1>
+                <div class="abbrev" [style.background-image]="'linear-gradient(to right,'+game.a_p+' 25%,'+game.a_p+','+game.h_p+','+game.h_p+' 75%)'">
+                  <h2>{{game.away_abbrev}}</h2>
+                  <h2>{{game.home_abbrev}}</h2>
+                </div>
+                <h1 class="score">{{game.away_score}}</h1>
+                <h1 class="score">{{game.home_score}}</h1>
+                <div class="detail">
+                  <div *ngIf="game.winner">
+                    {{game.winner == game.home ? game.home_school : game.away_school}} beat {{game.winner == game.home ? game.away_school : game.home_school}} in a {{game.home_score - game.away_score < -16 || game.home_score - game.away_score > 16 ? 'blowout' : 'close game'}}.
+                  </div>
+                </div>
+              </div>
+            </ion-card>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-grid" *ngIf="router.url.includes('#myleagues')">
+      <ion-card class="list-header"><h1>MY LEAGUES</h1></ion-card>
+      <div *ngFor="let league of leagues; let i=index; trackBy: trackByFunction" class="card-width" [class.middle]="i % 3 == 1">
+        <ion-card mode="md" button="true" class="card" (click)="openLeague(league)">
+          <div class="header-backup"></div>
+          <div class="card-header" [style.backgroundImage]="'url(https://s3.us-east-2.amazonaws.com/cfbpick6.images/league_'+league.id+')'" >
+            <div class="card-header-cover"></div>
+            <h1 class="league-details">{{league.name}}</h1>
+            <div class="rank-box" *ngIf="stats[league.league_id]">
+              <!-- <div class="rank-triangle"></div> -->
+              <h1 class="rank">{{stats[league.league_id]['rank']}}{{stats[league.league_id]['rank'] == 1 ? 'st' : stats[league.league_id]['rank'] == 2 ? 'nd' : stats[league.league_id]['rank'] == 3 ? 'rd' : 'th'}}</h1>
+            </div>
+          </div>
+          <div class="card-bottom draft" *ngIf="league['current_pick'] && league['draft_order'].split('-').length * 6 >= league['current_pick']">
+            <h1>DRAFTING</h1>
+            <ion-item>
+              <h2>CURRENT PICK:</h2> <h1>{{league['current_pick']}}</h1>
+            </ion-item>
+          </div>
+          <div class="card-bottom no-draft" *ngIf="league['current_pick'] == null">
+            <h1>DRAFT NOT YET SCHEDULED</h1>
+          </div>
+          <div class="card-bottom" *ngIf="league['current_pick'] && league['draft_order'].split('-').length * 6 < league['current_pick']">
+
+            <ion-item>
+              <h2>THIS WEEK:</h2> <h1>0 - 0</h1>
+            </ion-item>
+            <ion-item>
+              <h2>WINS:</h2> <h1 *ngIf="stats[league.league_id]">{{stats[league.league_id]['wins']}}</h1>
+            </ion-item>
+
+          </div>
+        </ion-card>
+      </div>
+      <div class="card-width" [class.middle]="leagues.length % 3 == 1">
+        <ion-card button="true" class="card create" routerLink="/create">
+          <div class="create-text">
+            <ion-icon name="add-circle-outline"></ion-icon>
+            <br>
+            <h1>CREATE NEW LEAGUE</h1>
+          </div>
+        </ion-card>
+      </div>
+    </div>
+    <ion-card id="tweets" class="tweets" *ngIf="device_mode == 'desktop'">
+      <div class="twitter-header"><h1><ion-icon name="logo-twitter"></ion-icon></h1></div>
+      <a class="twitter-timeline" href="https://twitter.com/ESPNCFB?ref_src=twsrc%5Etfw">WHAT's HAPPENING</a>
+      <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+    </ion-card>
+
+  </div>
+</ion-content>

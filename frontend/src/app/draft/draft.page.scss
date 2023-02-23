@@ -1,0 +1,630 @@
+
+.header-bar {
+  position: relative;
+  width: 90%;
+  height: 56px;
+  background-color: var(--ion-color-light);
+  overflow: hidden;
+  display: flex;
+  z-index: -2
+}
+
+.header-bar-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 56px;
+  z-index: 5;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+}
+
+.header-trapezoid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: 56px solid;
+  border-left: 0 solid transparent;
+  border-right: 37.333px solid transparent;
+  border-top-color: var(--ion-color-primary);
+  min-width: 300px;
+  width: 20%;
+  z-index: 3;
+}
+
+.logo {
+  position: relative;
+  height: 56px;
+  width: 56px;
+  background-size: cover;
+  background-image: url('/assets/images/cfbpick6_logo_199.png');
+  z-index: 4;
+}
+
+.title {
+  position: relative;
+  z-index: 1;
+  font-family: var(--ion-font-family);
+  color: white;
+  font-size: 32px;
+  font-weight: 900;
+  font-style: italic;
+  padding: 5.5px;
+  min-width: 201.25px;
+  z-index: 4;
+}
+
+.profile-button {
+  position: relative;
+  width: 10%;
+  height: 56px;
+  padding: 4px;
+  font-size: 48px;
+  text-align: center;
+  color: var(--ion-color-primary);
+  background-color: var(--ion-color-light);
+  border-left-style: solid;
+  border-left-width: thin;
+  border-left-color: var(--ion-color-medium);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+  z-index: 0;
+}
+
+.profile-button:hover {
+  background-color: var(--ion-color-primary);
+  color: var(--ion-color-light);
+}
+
+.profile-button:focus {
+  outline-style: none;
+}
+
+.first {
+  background: var(--ion-color-success);
+  background-image: linear-gradient(rgba(255,255,255,0.0),rgba(0,0,0,0.2));
+  color: var(--ion-color-success-contrast);
+}
+
+.banner {
+  background: var(--ion-color-success);
+  color: var(--ion-color-success-contrast);
+}
+
+.upcoming {
+  background: var(--ion-color-medium-tint);
+  background-image: linear-gradient(rgba(255,255,255,0.2),rgba(0,0,0,0.2));
+  color: var(--ion-color-medium-contrast);
+}
+.upcoming, .me {
+  cursor: pointer;
+}
+
+.dashboard-button {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  margin: 0;
+}
+
+.newRoundOld {
+  padding: 0;
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: 100%;
+}
+
+.newRound {
+  border-right-width: 4px !important;
+}
+
+.roundName {
+  width: 80%;
+  padding: 5px 5px 5px 5px;
+}
+
+.round {
+  border-right-style: solid;
+  border-right-color: black;
+  text-align: center;
+  padding: 0px 0px 0px 0px;
+  position: relative;
+  width: 20%;
+  height: 100%;
+  font-size: 12px;
+  background: var(--ion-color-medium-shade);
+  color: var(--ion-color-medium-contrast);
+}
+
+.me {
+  background: var(--ion-color-success);
+  background-image: linear-gradient(rgba(255,255,255,0.0),rgba(0,0,0,0.2));
+  color: var(--ion-color-success-contrast);
+}
+
+.colText {
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.default {
+  position: relative;
+  text-align: center;
+  border-right-style: solid;
+  border-right-color: var(--ion-color-dark-tint);
+  padding: 8px;
+}
+
+ion-grid {
+  padding: 0;
+}
+
+.bar {
+  overflow: hidden;
+}
+
+.draft {
+  padding: 0;
+  text-align: left;
+}
+
+.draft_first {
+  width: 100%;
+  font-size: 14px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.draft_last {
+  width: 100%;
+  font-size: 16px;
+  font-weight: bold;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.school-label {
+  margin: 0;
+}
+
+.school {
+  padding: 10px 10px 10px 10px;
+  color: white;
+  -webkit-text-stroke: 0.5px gray;
+  background-image: linear-gradient(rgba(255,255,255,0.2),rgba(0,0,0,0.2)) !important;
+}
+
+.table-head {
+  --padding-end: 40px;
+}
+
+.col-head {
+  h2 {
+    color: var(--ion-color-dark-tint);
+  }
+}
+
+.filter-button {
+  position: relative;
+  right: 0;
+}
+
+.param {
+  font-size: 30px;
+}
+.paramCol {
+  padding: 0;
+}
+.paramRow {
+  padding: 0px 8px 0px 0px;
+}
+
+.pick_div {
+  min-height: var(--min-height);
+  width: 100%;
+  left: -100%;
+  top: -100%;
+  overflow: hidden;
+  color: white;
+  background-color: var(--ion-color-tertiary-shade);
+  position: absolute;
+  z-index: 1;
+  top: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.2),rgba(0,0,0,0.2)) !important;
+}
+
+.down-icon {
+  color: var(--detail-icon-color);
+  font-size: var(--detail-icon-font-size);
+  opacity: var(--detail-icon-opacity);
+}
+
+ion-item.school-item {
+  --background: none;
+  --inner-padding-end: 0px;
+}
+
+ion-item.viewed {
+  --color: white;
+  --inner-padding-top: 10px;
+  --inner-padding-bottom: 10px;
+  h2 {
+    color: white;
+  }
+}
+
+ion-toolbar {
+  position: relative;
+  --padding-bottom: 0;
+  --padding-top: 0;
+  --padding-end: 0;
+  --padding-start: 0;
+}
+
+ion-title {
+  padding-right: 0;
+  padding-left: 0;
+}
+
+ion-content {
+  position: relative;
+  --padding-top: 0px;
+}
+
+.draft-container {
+  margin-top: 44px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+}
+
+.draft-order-container {
+  width: 50%;
+  position: relative;
+  background: var(--ion-color-light);
+  .bottom-container {
+    width: 100%;
+    display: flex;
+  }
+}
+
+.round-header {
+  width: 100%;
+  padding: 8px;
+  font-size: 20px;
+  height: 88px;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  font-weight: 900;
+  h1 {
+    width: 100%;
+  }
+}
+
+.container-2 {
+  width: 50%;
+  position: relative;
+}
+
+.draft-bar {
+  width: 100%;
+}
+
+.drafted {
+  width: 60%;
+  .squad-picks {
+    padding: 8px;
+    .squad-school {
+      padding: 2px;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      h2.squad-pick {
+        width: 50px;
+      }
+      app-school-alt {
+        width: 100%;
+      }
+    }
+  }
+}
+
+.schools {
+  padding-bottom: 200px;
+  width: 100%;
+  height: calc(100vh - 152px);
+  overflow-y: scroll;
+}
+
+.upcoming-order {
+  width: 40%;
+  height: calc(100vh - 132px);
+  overflow-y: scroll;
+}
+
+.new-round-box {
+  background-color: var(--ion-color-primary);
+  color: var(--ion-color-primary-contrast);
+  padding: 8px;
+  text-align: center;
+  background-image: linear-gradient(rgba(255,255,255,0.2),rgba(0,0,0,0.2));
+
+}
+
+.new-round-box, .round-header {
+  h1 {
+    color: white;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+  }
+}
+
+.grid {
+  width: 100%;
+  position: relative;
+  .head-conference {
+    padding-left: 16px;
+    position: absolute;
+    right: 0;
+  }
+  .row {
+    position: relative;
+    display: flex;
+  }
+  .row.top {
+    align-items: center;
+  }
+  .col {
+    position: relative;
+  }
+  .col.name {
+    width: 50%;
+  }
+  .col.conference {
+    width: 30%;
+  }
+  .col.stat {
+    width: 20%;
+    text-align: right;
+  }
+  .col.stat.top {
+    width: 20%;
+    text-align: left;
+  }
+}
+
+.school-bottom {
+  display: flex;
+}
+
+.schedule {
+  position: relative;
+  width: 100%;
+  padding: 12px 0px 0px 64px ;
+  h2.heading {
+    padding-bottom: 8px;
+  }
+  .opponents {
+    display: inline-block;
+    column-count: 2;
+    width: 100%;
+    .opponent {
+      width: 100%;
+      font-weight: 500;
+      padding: 4px 0 0 0;
+      display: inline-block;
+      position: relative;
+      font-size: 14px;
+      .result {
+        width: 16px;
+        min-height: 1px;
+        text-align: center;
+        float: left;
+        font-size: 10px;
+        font-weight: 700;
+      }
+    }
+    ion-skeleton-text {
+      --background-rgb: 255, 255, 255;
+      width: 100%;
+      height: 18.5px;
+      margin-right: 10%;
+    }
+  }
+}
+
+.school-info {
+  min-width: 200px;
+  padding: 12px 0 0 0;
+  position: relative;
+  margin-top: auto;
+  h2 {
+    color: white;
+    text-align: left;
+  }
+  .entry {
+    position: relative;
+    text-align: right;
+    width: 100%;
+    padding: 8px 0 0 0;
+    font-size: 18px;
+    font-weight: 700;
+    h2 {
+      position: absolute;
+      bottom: 0;
+    }
+  }
+  .entry.pick6 {
+    font-size: 24px;
+    font-weight: 900;
+  }
+}
+
+.draft-button {
+  width: 150px;
+  margin: 20px 0 15px 25px;
+}
+
+@mixin rings($duration, $delay) {
+    opacity: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -28px;
+    left: 45%;
+    right: 0;
+    bottom: 0;
+    content: '';
+    height: 100px;
+    width: 100px;
+    border: 20px solid rgba(255,255,255,0.2);
+    border-radius: 100%;
+    animation-name: ripple;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(.65,0,.34,1);
+    z-index: -1;
+}
+
+@mixin ringsEffect($duration, $delay) {
+    opacity: 0;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: -28px;
+    left: 45%;
+    right: 0;
+    bottom: 0;
+    content: '';
+    height: 100px;
+    width: 100px;
+    border: 20px solid rgba(221,85,12,0.8);
+    border-radius: 100%;
+    animation-name: ripple;
+    animation-duration: $duration;
+    animation-delay: $delay;
+    animation-iteration-count: 2;
+    animation-timing-function: cubic-bezier(.65,0,.34,1);
+    z-index: -1;
+}
+
+.alert {
+  position: relative;
+  text-align: center;
+  background-color: var(--ion-color-secondary);
+  color: var(--ion-color-secondary-contrast);
+  width: 100%;
+  height: 56px;
+  z-index: -1;
+  font-size: 40px;
+  font-weight: 900;
+
+  &::after {
+    @include rings(3s, 0s);
+  }
+
+  &::before {
+    @include rings(3s, 0.5s);
+  }
+}
+
+
+.school_div {
+  min-height: var(--min-height);
+  z-index: 2;
+  position: absolute;
+  right: 0;
+  background-color: #03244D;
+  color: #DD550C;
+  width: 80%;
+  height: 56px;
+  font-size: 40px;
+  font-weight: 900;
+  font-family: "Arial Black", "Arial Bold", Gadget, sans-serif;
+  text-align: center;
+  &::after {
+    @include ringsEffect(5s, 0s);
+  }
+
+  &::before {
+    @include ringsEffect(4s, 1s);
+  }
+}
+
+.phone {
+  .draft-container, .draft-order-container, .container-2 {
+    width: 100%;
+    margin: 0;
+  }
+  ion-header {
+    position: relative;
+  }
+  .segment-container {
+    position: relative;
+    // top: 44px;
+    z-index: 10;
+    width: 100%;
+    padding: 1% 2.5%;
+    background: var(--ion-color-light);
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    ion-segment {
+      width: 100%;
+    }
+  }
+  .squad-picks {
+    margin: 6px;
+  }
+  .col.name {
+    width: 55%;
+  }
+  .col.conference {
+    width: 30%;
+  }
+  .col.stat {
+    width: 15%;
+  }
+  .col {
+    font-size: 14px;
+  }
+
+  .schools {
+    height: calc(100vh - 192px);
+  }
+
+  .upcoming-order {
+    height: calc(100vh - 172px);
+  }
+  .school-info {
+    width: 100%;
+    padding: 0;
+    .entry {
+      padding: 0;
+    }
+  }
+  .schedule {
+    padding: 20px 0 0 0;
+
+  }
+  .opponent {
+    font-size: 12px !important;
+  }
+  .school-bottom {
+    display: block;
+  }
+  .draft-button {
+    margin: 20px 0 10px 0;
+    width: 100%;
+  }
+}

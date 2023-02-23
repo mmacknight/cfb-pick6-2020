@@ -1,0 +1,872 @@
+ion-content {
+  --background: var(--ion-color-light);
+}
+
+ion-header.desktop {
+  display: flex;
+  height: var(--ion-header-height);
+}
+
+.desktop {
+  .title {
+    position: relative;
+    z-index: 6;
+    font-family: var(--ion-font-family);
+    color: white;
+    font-size: 32px;
+    font-weight: 900;
+    font-style: italic;
+    padding: 0.5px;
+    min-width: 201.25px;
+  }
+
+  .news-score {
+    min-width: 50px;
+    min-height: 50px;
+    width: 18vw;
+    height: 0px;
+    margin: 2.5% 0;
+    padding-bottom: 18vw;
+    position: relative;
+
+    // height: 0;
+    .inner-score {
+      display: flex;
+      flex-wrap: wrap;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+
+  .news-score.middle {
+    margin: 2.5% 5% !important;
+  }
+
+  .news-grid-container {
+    width: 100%;
+    -ms-overflow-style: none;
+  }
+
+  .news-grid-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .news-grid {
+    display: inline-flex;
+    position: relative;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .news-container {
+    position: relative;
+    margin-top: 160px;
+    width: 100%;
+  }
+
+  .grid-container {
+    position: relative;
+    min-width: 600px;
+    width: 60vw;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+    float: left;
+    overflow: visible;
+  }
+
+
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0;
+    position: relative;
+    height: auto;
+    overflow: visible;
+    right: 0;
+    float: left;
+    min-width: 600px;
+    width: 60vw;
+
+    .list-header {
+      position: relative;
+    }
+  }
+
+  .card-width {
+    width: 19vw;
+    margin: 0.75vw 0;
+  }
+
+  .card-width.middle {
+    margin: 0.75vw 1.5vw;
+  }
+
+  .card-header {
+    background-position: center center;
+    background-size: cover;
+    transition: background-size 0.3s;
+    position: relative;
+    height: 19vw;
+    width: 100%;
+    z-index: 1;
+  }
+
+  .header-backup {
+    background-image: url('/assets/images/cfbpick6_logo_200.png');
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 19vw;
+    z-index: 0;
+  }
+
+  .card-header-cover {
+    background: black;
+    opacity: 0.5;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+
+  }
+
+  .card {
+    width: 100%;
+    position: relative;
+    margin: 0;
+
+    .card-bottom,
+    .card-details,
+    .card-schools {
+      height: calc(0.6178 * 19vw);
+    }
+  }
+
+  .home-card {
+    display: flex;
+  }
+
+  .article {
+    h2:hover {
+      color: var(--ion-color-primary-tint);
+    }
+  }
+}
+
+.phone {
+  .home-container {
+    padding: 20px 0 0 0;
+    width: 100%;
+    min-width: 0px;
+  }
+
+  .articles-container {
+    width: 100%;
+  }
+
+  .home-card {
+    width: 100%;
+    height: auto;
+
+    .home-card-graphic {
+      position: relative;
+      width: 100%;
+
+      .card-header {
+        height: 350px;
+        background-position: center;
+      }
+
+      .home-card-bottom {
+        height: auto;
+        font-size: 14px;
+
+        h1 {
+          color: var(--ion-color-league);
+        }
+
+        color: var(--ion-color-primary-tint);
+        background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 1) 85%);
+      }
+    }
+  }
+
+  .news-score {
+    width: 47.5%;
+    height: 0px;
+    margin: 1.25%;
+    padding-bottom: 47.5%;
+    position: relative;
+
+    // height: 0;
+    .inner-score {
+      display: flex;
+      flex-wrap: wrap;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+    }
+  }
+
+  .news-grid-container {
+    width: 100%;
+    -ms-overflow-style: none;
+    // overflow-x: scroll;
+  }
+
+  .news-grid-container::-webkit-scrollbar {
+    display: none;
+  }
+
+  .news-grid {
+    display: inline-flex;
+    position: relative;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  .news-container {
+    position: relative;
+    margin-top: 60px;
+    width: 100%;
+  }
+
+  .grid-container {
+    position: relative;
+    float: left;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    overflow: visible;
+  }
+
+  .card-grid {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto;
+    position: relative;
+    text-align: left;
+    width: 100%;
+    padding: 0% 0% 0% 0%;
+
+    .list-header {
+      position: relative;
+    }
+  }
+
+  .card-width {
+    width: 175px;
+    margin: 5px 5px 5px 5px;
+  }
+
+  .card-header {
+    background-position: center center;
+    background-size: cover;
+    position: relative;
+    height: 175px;
+    width: 100%;
+    z-index: 1;
+
+  }
+
+  .header-backup {
+    background-image: url('/assets/images/cfbpick6_logo_200.png');
+    background-position: center center;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 175px;
+    z-index: 0;
+  }
+
+  .card-header-cover {
+    background: black;
+    opacity: 0.5;
+    height: 100%;
+    width: 100%;
+    z-index: 2;
+
+  }
+
+  .card {
+    width: 100%;
+    margin: 0;
+    position: relative;
+    height: 283.15px;
+
+    .card-bottom,
+    .card-details,
+    .card-schools {
+      height: 108.15px;
+    }
+  }
+}
+
+.news-score {
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  border-radius: 0px;
+
+  .detail {
+    width: 100%;
+    height: 50%;
+    padding: 10px;
+    font-size: 16px;
+    border-top: solid var(--ion-color-dark-tint);
+    text-align: left;
+
+    h2 {
+      color: var(--ion-color-dark-tint);
+    }
+  }
+
+  h1.game-status {
+    text-align: center;
+    width: 100%;
+  }
+
+  .abbrev {
+    width: 100%;
+    position: relative;
+    top: 0px;
+    display: flex;
+    height: 24px;
+
+    h2 {
+      padding: 2px;
+      color: white;
+      min-height: 24px;
+      width: 50%;
+    }
+
+    background: var(--ion-color-light-tint);
+  }
+
+  h1.score {
+    width: 50%;
+    padding: 6px;
+  }
+}
+
+.card {
+  border-radius: 0;
+}
+
+.header-bar {
+  position: relative;
+  width: 90%;
+  height: var(--ion-header-height);
+  background-color: var(--ion-color-light);
+  overflow: hidden;
+  display: flex;
+  z-index: -2
+}
+
+.header-bar-cover {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: var(--ion-header-height);
+  z-index: 2;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+}
+
+.header-trapezoid {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-top: var(--ion-header-height) solid;
+  border-left: 0 solid transparent;
+  border-right: 37.333px solid transparent;
+  border-top-color: var(--ion-color-primary);
+  min-width: 300px;
+  width: 20%;
+  z-index: 5;
+}
+
+.logo {
+  position: relative;
+  height: var(--ion-header-height);
+  width: var(--ion-header-height);
+  background-size: cover;
+  background-image: url('/assets/images/cfbpick6_logo_199.png');
+  z-index: 6;
+}
+
+.profile-button {
+  position: relative;
+  width: 10%;
+  height: var(--ion-header-height);
+  padding: 4px;
+  font-size: 40px;
+  text-align: center;
+  color: var(--ion-color-primary);
+  background-color: var(--ion-color-light);
+  border-left-style: solid;
+  border-left-width: thin;
+  border-left-color: var(--ion-color-medium);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+  cursor: pointer;
+  z-index: 0;
+}
+
+.profile-button:hover {
+  background-color: var(--ion-color-primary);
+  color: var(--ion-color-light);
+}
+
+.profile-button:focus {
+  outline-style: none;
+}
+
+.create {
+  background-color: var(--ion-color-primary-tint);
+  color: var(--ion-color-light);
+  width: 19vw;
+  height: calc(1.6178 * 19vw);
+  text-align: center;
+  position: relative;
+}
+
+.create:hover {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.1), rgba(0, 0, 0, 0.1));
+}
+
+.create-text {
+  position: absolute;
+  width: 100%;
+  bottom: 25%;
+  font-family: var(--ion-font-family);
+  transform: translateY(-50%);
+  font-size: 32px;
+  font-weight: 700;
+
+  h1 {
+    color: white;
+  }
+}
+
+.create-text ion-icon {
+  font-size: 48px;
+}
+
+.card-width>ion-card:hover {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+}
+
+.league-details {
+  position: absolute;
+  bottom: 5%;
+  left: 10px;
+  color: white;
+}
+
+.card-bottom {
+  position: relative;
+  width: 100%;
+  height: 38.195%;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px;
+
+  h1 {
+    width: 100%;
+  }
+
+  ion-item {
+    width: 100%;
+    --padding-end: 0;
+    --padding-start: 0;
+    --background: none;
+
+    h1 {
+      position: absolute;
+      right: 0;
+      width: auto;
+    }
+
+    h2 {
+      width: auto;
+    }
+  }
+}
+
+.no-draft {
+  h1 {
+    text-align: center;
+    color: var(--ion-color-medium);
+  }
+}
+
+.draft {
+  h1 {
+    color: var(--ion-color-success-shade);
+  }
+
+}
+
+.card-details {
+  position: relative;
+  width: 38.17%;
+  display: flex;
+}
+
+.card-schools {
+  width: 61.83%;
+  height: 100%;
+  position: relative;
+  background: var(--ion-color-light-shade);
+  overflow-y: scroll;
+  -ms-overflow-style: none;
+  /* IE and Edge */
+  scrollbar-width: none;
+
+  /* Firefox */
+  .alt-school-container {
+    position: relative;
+    margin: 4px;
+  }
+}
+
+.card-schools::-webkit-scrollbar {
+  display: none;
+}
+
+.team-wins-box {
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.wins-label {
+  position: absolute;
+  color: black;
+  top: 0;
+  width: 100%;
+  height: 38.17%;
+  font-size: 12px;
+  text-align: center;
+  padding-top: 20%;
+  background: whitesmoke;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+
+}
+
+.wins {
+  font-size: 48px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: black;
+  text-align: center;
+  height: 61.83%;
+  padding-top: 20%;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+}
+
+.rank-box {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 10;
+
+  h1,
+  h2 {
+    color: white;
+  }
+
+  width: 100px;
+  height: 100px;
+}
+
+.rank-triangle {
+  position: absolute;
+}
+
+.rank-triangle {
+  width: 110px;
+  height: 56px;
+  box-sizing: content-box;
+  padding-top: 15px;
+  position: relative;
+  background: red;
+  color: white;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.rank-triangle:after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0;
+  border-bottom: 13px solid #eee;
+  border-left: 55px solid transparent;
+  border-right: 55px solid transparent;
+}
+
+
+.rank-label {
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.rank {
+  position: absolute;
+  padding: 10px;
+  right: 0;
+}
+
+
+.list-header {
+  width: 100%;
+  padding: 5px 10px 5px 10px;
+  margin: 0;
+  text-align: left;
+  background: var(--ion-color-primary);
+  // height: 44px;
+  justify-content: center;
+
+  h1 {
+    color: white;
+  }
+}
+
+
+
+.home-container {
+  padding: 44px 0px 40px 8vw;
+  min-width: 1080px;
+  display: inline-block;
+  flex-wrap: wrap;
+  position: relative;
+  width: 100%;
+}
+
+.tweets {
+  float: left;
+  width: 25vw;
+  max-width: 350px;
+  min-width: 150px;
+  position: relative;
+  right: 0;
+  margin: 0 0 0 5vw;
+  border-radius: 0;
+
+  .twitter-header {
+    text-align: center;
+    height: 44px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    background: var(--ion-color-primary);
+    width: 100%;
+    padding: 7.75px;
+
+    h1 {
+      color: white;
+    }
+  }
+}
+
+.home-card {
+  margin: 0 0 10px 0;
+  border-radius: 0;
+  text-align: left;
+  width: 900px;
+  position: relative;
+  right: 0;
+  height: 500px;
+
+
+  .home-card-graphic {
+    position: relative;
+    width: 650px;
+
+    .card-header {
+      position: relative;
+
+      img.article-graphic {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: 50% 30%;
+        position: absolute;
+        opacity: 0;
+        transition: opacity 0.25s;
+      }
+
+      img.activeArticle {
+        opacity: 1;
+      }
+
+      height: 500px;
+      background-size: cover;
+      background-position-y: 25%;
+      display: flex;
+      align-items: center;
+
+      ion-icon {
+        position: relative;
+        font-size: 72px;
+        color: #F0F0F080;
+        cursor: pointer;
+        border-radius: 72px;
+        z-index: 5;
+      }
+
+      ion-icon.desktop:hover {
+        color: white;
+        background-color: #F0F0F080;
+      }
+
+      ion-icon.left {
+        margin-left: 0;
+        margin-right: auto;
+      }
+
+      ion-icon.right {
+        margin-left: auto;
+        margin-right: right;
+      }
+    }
+
+    .home-card-bottom {
+      z-index: 1;
+      position: absolute;
+      bottom: 0;
+      font-size: 18px;
+      color: white;
+      height: 150px;
+      padding: 13px 16px 13px 16px;
+      display: flex;
+      flex-wrap: wrap;
+      cursor: pointer;
+      background: rgba(34, 34, 34, 0.8);
+
+      h1 {
+        padding: 0 0 13px 0;
+        color: white;
+      }
+
+      h1 {
+        color: var(--ion-color-league);
+      }
+
+      color: var(--ion-color-primary-tint);
+      background: linear-gradient(rgba(255, 255, 255, 0.96));
+    }
+  }
+}
+
+
+.nav-bar {
+  width: 100%;
+  display: flex;
+  border-bottom: solid 3px var(--ion-color-primary);
+  margin: 20px 0;
+
+  .nav-link {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: var(--ion-color-medium-shade);
+    cursor: pointer;
+  }
+
+  .nav-link:hover,
+  .active {
+    h2 {
+      color: var(--ion-color-primary) !important;
+    }
+  }
+}
+
+.primary-gradient {
+  background-image: linear-gradient(#4d4d79 0%, #000040 500px);
+}
+
+.medium-gradient {
+  background-image: linear-gradient(var(--ion-color-light) 0%, var(--ion-color-light) 400px, var(--ion-color-medium) 1000px);
+}
+
+.dark-gradient {
+  background-image: linear-gradient(#4e5053 0%, #222428 200px);
+}
+
+.articles-container {
+  margin: 10px 40px;
+  margin: 0;
+  border-radius: 0;
+  padding: 16px;
+  width: 250px;
+  z-index: 10;
+  box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2);
+  background: white;
+
+  h1 {
+    color: var(--ion-color-primary-tint);
+    padding-bottom: 13px;
+  }
+
+  .article {
+    border-top: solid thin var(--ion-color-medium-tint);
+    color: var(--ion-color-dark-tint);
+    padding: 8px 0;
+    cursor: pointer;
+
+    h2 {
+      color: var(--ion-color-medium);
+    }
+  }
+
+  .article:focus {
+    outline: none;
+  }
+}
+
+app-contact,
+app-about,
+app-media {
+  float: left;
+  position: relative;
+  padding-top: 44px;
+  display: block;
+}
+
+.desktop {
+
+  app-contact,
+  app-about,
+  app-media {
+    min-width: 600px;
+    width: 60vw;
+  }
+}
+
+.phone {
+
+  app-contact,
+  app-about,
+  app-media {
+    width: 100%;
+  }
+
+  app-contact,
+  app-about {
+    padding: 34px 10px;
+  }
+}

@@ -1,0 +1,211 @@
+.throne-container {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  padding: 60px 240px;
+  width: 100%;
+}
+
+.bottom-container {
+  display: flex;
+  position: relative;
+  width: 100%;
+}
+
+.photo-input-container {
+  width: 250px;
+  height: 250px;
+  position: absolute;
+  z-index: 3;
+  background-image: linear-gradient(rgba(34, 34, 34, 0.7),rgba(34, 34, 34, 0.7));
+  border-radius: 5px;
+  overflow: hidden;
+  ion-icon {
+    position: absolute;
+    font-size: 200px;
+    padding: 25px;
+    color: var(--ion-color-light);
+    opacity: 0.3;
+  }
+  input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    z-index: 4;
+    cursor: pointer;
+  }
+}
+
+.preview {
+  position: absolute;
+  width: 250px;
+  height: 250px;
+  object-fit: cover;
+  z-index: 2;
+  border-radius: 5px;
+  overflow: hidden;
+}
+.league-image {
+  width: 250px;
+  height: 250px;
+  background-size: cover;
+  background-position: center;
+  position: absolute;
+  border-radius: 5px;
+  overflow: hidden;
+}
+
+.image-container {
+  margin: 40px 40px 0px 0px;
+  min-width: 250px;
+  min-height: 250px;
+  width: 250px;
+  height: 250px;
+  position: relative;
+}
+
+.form-container {
+  margin: 20px 20px 0 0;
+  width: 100%;
+}
+
+ion-item {
+  --padding-end: 0;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+  --inner-padding-start: 0;
+}
+
+.content {
+  --background: var(--ion-color-light);
+  padding: 0 8px !important;
+  margin: 10px 0px;
+  border-radius: 5px;
+}
+
+
+.throne-header {
+  height: 300px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+
+  .throne-header-cover {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background-image:
+      linear-gradient(135deg, rgba(var(--ion-color-dark-rgb),1), rgba(var(--ion-color-dark-rgb),1) 50%, #FCF6BAA0, #B38728D0,  #AA771CD0),
+      linear-gradient(to right, rgba(var(--ion-color-dark-rgb),1) 50%, rgba(var(--ion-color-dark-rgb),0) 55%);
+    z-index: 2;
+  }
+  .throne-header-background {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: url('/assets/images/throne.jpg');
+    background-size: 50%;;
+    background-position: right center;
+    background-repeat: no-repeat;
+    filter: blur(2px);
+    -webkit-filter: blur(2px);
+    z-index: 1;
+  }
+  .throne-header-text {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 3;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    padding: 40px;
+    .quote {
+      position: relative;
+      top: 0;
+      left: 0;
+      padding: 40px 0;
+      .text {
+        font-family: tangerine, cursive;
+        font-size: 45px;
+        // font-family: Bir
+      }
+      .attribution {
+        text-align: right;
+        font-size: 20px;
+      }
+    }
+    h1, h2 {
+      width: 100%;
+      color: white;
+    }
+    h1 {
+      font-size: 50px;
+    }
+    h2 {
+      font-size: 30px;
+      font-weight: 400;
+      font-style: italic;
+    }
+
+  }
+}
+.throne-welcome {
+  width: 100%;
+  padding-bottom: 47px;
+}
+
+ion-button.back-button {
+  position: absolute;
+  top: 10px;
+  left: 40px;
+  z-index: 4;
+  h2 {
+    color: var(--ion-color-dark-tint);
+  }
+}
+
+.button-container {
+  position: relative;
+  margin-left: auto;
+  margin-top: 10px;
+}
+
+.phone {
+  .throne-container {
+    padding: 10px;
+  }
+  .throne-welcome {
+    padding-bottom: 10px;
+  }
+  .throne-header {
+    height: 100px;
+    .throne-header-text {
+      padding: 0;
+      .quote {
+        padding: 10px;
+        h1.text {
+          font-size: 20px;
+          padding-bottom: 20px
+        }
+        h2.attribution {
+          text-align: left;
+          font-size: 12px;
+          font-style: normal;
+          font-weight: 800;
+        }
+      }
+    }
+  }
+  .bottom-container {
+    display: block;
+
+    .image-container {
+      margin: auto;
+    }
+  }
+  .title {
+    font-size: 16px;
+  }
+}

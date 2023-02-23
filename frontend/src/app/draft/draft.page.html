@@ -1,0 +1,157 @@
+<ion-header *ngIf="device_mode == 'phone'" class="phone" scrollY="false">
+  <app-ticker [mode]="device_mode"></app-ticker>
+  <div class="segment-container">
+    <ion-segment [(ngModel)]="seg">
+      <ion-segment-button value="order">
+        <ion-label>ORDER</ion-label>
+      </ion-segment-button>
+      <ion-segment-button value="draft">
+        <ion-label>DRAFT</ion-label>
+      </ion-segment-button>
+    </ion-segment>
+  </div>
+</ion-header>
+
+<ion-content [class.phone]="device_mode == 'phone'" scrollY="false">
+   <div class="draft-container">
+     <div class="draft-order-container" [hidden]="device_mode == 'phone' && seg != 'order'">
+       <div
+        (click)="getSquadPicks(draft_order[getIndex(pick)])"
+        [class.me]="draft_order[getIndex(pick)] == currentUser.id && pick <= draft_order.length * 6"
+        [class.upcoming]="draft_order[getIndex(pick)] != currentUser.id || pick > draft_order.length * 6"
+        class="round-header"
+       >
+         <ion-button class="dashboard-button" shape="round" size="small" color="lighter" routerLink="/" fragment="myleagues" routerDirection="back">
+           <ion-icon slot="start" [color]="draft_order[getIndex(pick)] == currentUser.id && pick <= draft_order.length * 6 ? 'success' : 'medium'" name="arrow-back"></ion-icon>
+           <h2 [style.color]="draft_order[getIndex(pick)] == currentUser.id && pick <= draft_order.length * 6 ? '#10DC60' : '#989aa2'">DASHBOARD</h2>
+         </ion-button>
+         <h1 *ngIf="draft_order.length > 0 && pick <= draft_order.length * 6">ROUND {{((pick - 1 - ((pick-1) % draft_order.length)) / draft_order.length + 1)}} : Pick {{(pick-1) % draft_order.length + 1}} - {{users[draft_order[getIndex(pick)]]['first'] + ' ' +  users[draft_order[getIndex(pick)]]['last'] | uppercase}}</h1>
+         <h1 *ngIf="draft_order.length > 0 && pick > draft_order.length * 6">END OF DRAFT</h1>
+       </div>
+       <div class="bottom-container">
+         <div class="upcoming-order">
+           <div
+            [hidden]="i < pick-1"
+             *ngFor="let _ of arrayNum(draft_order.length*6); let i = index; trackBy: trackByFunction" size="3">
+             <div
+              [hidden]="i < pick"
+              (click)="getSquadPicks(draft_order[getIndex(i+1)])"
+               [class.default]='1'
+               [class.me]="draft_order[getIndex(i+1)] == currentUser.id"
+               [class.upcoming]="!(draft_order[getIndex(i+1)] == currentUser.id)"
+               class="colText">
+               <div class="draft draft_first">{{i+1}} {{users[draft_order[getIndex(i+1)]]['first'] | uppercase}}</div>
+               <div class="draft draft_last">{{users[draft_order[getIndex(i+1)]]['last'] | uppercase}}</div>
+             </div>
+             <div
+               *ngIf="(i+1) % draft_order.length == 0"
+               class="colText">
+               <div class="new-round-box"><h1>{{(i+1) / draft_order.length + 1 > 6 ? 'END OF DRAFT' : 'ROUND ' + ((i+1) / draft_order.length + 1)}}</h1></div>
+             </div>
+           </div>
+         </div>
+         <div class="drafted" *ngIf="viewingPicks.id && users[viewingPicks.id]">
+           <ion-card class="squad-picks">
+             <h2>{{users[viewingPicks.id]['first'] | uppercase}}</h2>
+             <h1>{{users[viewingPicks.id]['last'] | uppercase}}</h1>
+             <div class="squad-school" *ngFor="let p of viewingPicks.picks">
+               <h2 class="squad-pick">{{p.pick}}: </h2>
+               <app-school-alt [getSchool]="{school: p.school, primary_color: p.primary_color, secondary_color: p.secondary_color, text_color: p.text_color}" [getNumber]="'-'"></app-school-alt>
+             </div>
+           </ion-card>
+         </div>
+      </div>
+    </div>
+     <div class="container-2" [hidden]="device_mode == 'phone' && seg != 'draft'">
+       <ion-grid class="draft-bar">
+         <ion-row class="ion-justify-content-center paramRow">
+           <ion-col size="10" class=" paramCol ion-align-self-center">
+             <ion-searchbar #search mode="ios"></ion-searchbar>
+           </ion-col>
+           <ion-col size="1" class="paramCol ion-align-self-center">
+             <ion-icon class="param" color="primary" (click)="presentSortPopover($event)" mode="md" name="reorder-three"></ion-icon>
+           </ion-col>
+           <ion-col size="1" class="paramCol ion-align-self-center">
+             <ion-icon class="param" color="primary" (click)="presentFilterPopover($event)" mode="ios" name="funnel"></ion-icon>
+           </ion-col>
+         </ion-row>
+       </ion-grid>
+       <ion-item class="table-head">
+         <div class="grid">
+           <div class="row">
+             <div class="col name">
+               <h2>School</h2>
+             </div>
+             <div class="col conference">
+               <h2>Conference</h2>
+             </div>
+             <div class="col stat">
+               <h2>{{draft_sort != 'school' ? headings[draft_sort] : 'Wins'}}</h2>
+             </div>
+           </div>
+         </div>
+       </ion-item>
+       <ion-list class="schools">
+         <ion-item
+          [hidden]="(filter != 'All' && filter != school.conference) || (search.value && school.school.slice(0,search.value.length).toLowerCase() != search.value.toLowerCase())"
+          [disabled]="drafted || (picks[school.id] ? 1 : 0)"
+          button = "true"
+          detail = "false"
+          (click)="viewSchool(school.id)"
+          class="school-item"
+          [class.viewed]="viewing == school.id"
+          [style.background]="viewing == school.id ? school.primary_color : 'transparent'"
+          *ngFor="let school of schools | schoolSort: draft_sort">
+           <div class="grid">
+             <div class="row top">
+               <h1 *ngIf="viewing == school.id" [style.color]="school.text_color" class="head-name">{{school.school | uppercase}}</h1>
+               <h2 *ngIf="viewing == school.id" [style.color]="school.text_color" class="head-conference">{{school.conference}}</h2>
+             </div>
+             <div class="row">
+
+              <div *ngIf="viewing != school.id" class="col name">
+                <h2>{{school.school | uppercase}}</h2>
+              </div>
+              <div *ngIf="viewing != school.id" class="col conference">
+                {{school.conference}}
+              </div>
+              <div *ngIf="viewing != school.id" class="col stat">
+                {{draft_sort != 'school' ? school[draft_sort] : school['wins']}}
+              </div>
+            </div>
+            <div [hidden]="school.id != viewing" class="school-bottom">
+              <div class="school-info">
+                <div class="entry pick6">
+                  <h2>PICK6: </h2> {{school['proj'] || 0}}
+                </div>
+                <div class="entry">
+                  <h2>Wins:</h2> {{school['wins'] || 0}}
+                </div>
+                <div class="entry">
+                  <h2>ESPN FPI: </h2> {{ school['fpi'] || 0}}
+                </div>
+                <div class="entry">
+                  <h2>VEGAS O/U: </h2> {{ school['vegas'] || 0}}
+                </div>
+              </div>
+              <div class="schedule">
+                <h2 class="heading">SCHEDULE {{viewing == viewingSchedule.id ? '('+viewingSchedule.schedule.length+' GAMES)': ''}}</h2>
+                <div class="opponents">
+                  <div [hidden]="viewingSchedule.id != viewing" *ngFor="let game of viewingSchedule.schedule" class="opponent">
+                    <div class="result">{{game['result'] ? game['result'] : ''}}</div> {{game['school'] | uppercase}}
+                  </div>
+                  <ion-skeleton-text animated [hidden]="viewing == viewingSchedule.id || viewing != school.id" *ngFor="let _ of [0,1,2,3,4,5,6,7,8,9,10,11]"></ion-skeleton-text>
+                </div>
+              </div>
+            </div>
+            <div [hidden]="school.id != viewing" class="row">
+              <ion-button class="draft-button" size="medium" shape="round" color="lighter" (click)="pickSchool(school)"><h2 [style.color]="school.primary_color">DRAFT</h2></ion-button>
+            </div>
+          </div>
+          <ion-icon slot="end" [hidden]="viewing == school.id" class="down-icon" name="chevron-forward-outline"></ion-icon>
+          <ion-icon slot="end" [hidden]="viewing != school.id" class="down-icon" name="chevron-down-outline"></ion-icon>
+        </ion-item>
+        </ion-list>
+      </div>
+    </div>
+</ion-content>

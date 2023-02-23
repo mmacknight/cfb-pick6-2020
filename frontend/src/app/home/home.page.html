@@ -1,0 +1,186 @@
+<ion-header [hidden]="device_mode != 'phone'">
+  <ion-toolbar color="light">
+    <ion-title class="title">CFB PICK6</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [class.phone]="device_mode == 'phone'" [class.desktop]="device_mode == 'desktop'">
+  <div class="header-bar" [hidden]="device_mode == 'phone'">
+    <div class="header-bar-cover">
+    </div>
+    <div class="logo">
+    </div>
+    <div class="title">
+      CFB PICK6
+    </div>
+    <a href="#about" class="link">
+      ABOUT
+    </a>
+    <a href="#steps" class="link">
+      HOW TO PLAY
+    </a>
+    <a (click)="authLink('login')" class="link">
+      GET STARTED
+    </a>
+  </div>
+  <div class="home-graphic">
+    <div class="text">
+      YOUR ROAD TO VICTORY STARTS HERE.
+    </div>
+    <div class="button-box">
+      <ion-button mode="ios" color="secondary" shape="round" size="small" class="login home-button" (click)="authLink('login')">
+        LOGIN
+      </ion-button>
+      <ion-button mode="ios" color="medium" shape="round" size="small" class="register home-button" (click)="authLink('register')">
+        REGISTER
+      </ion-button>
+    </div>
+  </div>
+  <div class="home-info">
+    <h1 id="about">
+      A NEW WAY TO PLAY
+    </h1>
+    <p>
+      CFB PICK6 is the newest thing in fantasy sports! The best site for your always desired college fantasy football team has finally arrived! However, there are some differences from your ordinary fantasy football site. Instead of selecting individual players, each owner selects six FBS D1 teams. The goal is to select the six teams who will win the most combined games. Don't get too arrogant yet, drafting the best squad is more difficult than you think! After drafting your squad of six, cheer them on to victory and enjoy the season. Make every game matter!
+    </p>
+    <h1 id="steps">
+      HOW TO PLAY
+    </h1>
+    <div class="step-text">
+      <h2>1. Create Your CFB PICK6 Account</h2>
+      <p> Include first name, last name, a fun username, unique password, and a personal email to start your CFB PICK6 journey!</p>
+    </div>
+    <div [formGroup]="profileForm" class="graphic profile-form">
+      <ion-list>
+        <ion-item>
+          <ion-label position="floating">First Name</ion-label>
+          <ion-input type="text" formControlName="first" required disabled="true" [value]="demo_admin.first"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Last Name</ion-label>
+          <ion-input type="text" formControlName="last" required disabled="true" [value]="demo_admin.last"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Username</ion-label>
+          <ion-input type="text" formControlName="username" required disabled="true" [value]="demo_admin.username"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Password</ion-label>
+          <ion-input type="password" formControlName="password" required disabled="true" [value]="demo_admin.password"></ion-input>
+        </ion-item>
+
+        <ion-item>
+          <ion-label position="floating">Email</ion-label>
+          <ion-input type="email" formControlName="email" required disabled="true" [value]="demo_admin.email"></ion-input>
+        </ion-item>
+
+        <ion-button mode="ios" expand="block" type="submit" >Register</ion-button>
+      </ion-list>
+    </div>
+    <div class="step-text">
+      <h2>2. Create/Join a League</h2>
+      <p> To view a league invitation, visit the user portal. Within the user portal, accept league invites and prepare to select your top squad. The user portal also allows users to view and manage their account information.
+      </p>
+      <p> To view a league invitation, visit the user portal. Within the user portal, accept league invites and prepare to select your top squad. The user portal also allows users to view and manage their account information.
+      </p>
+    </div>
+    <div class="graphic">
+      <ion-card class="invites-card">
+        <ion-list>
+          <ion-list-header>
+            <ion-label>Invites</ion-label>
+          </ion-list-header>
+          <div>
+            <ion-item>
+              <ion-label>
+              <h2><b>{{invite.name}}</b></h2>
+              <h3>Manager: {{invite.username}} : {{invite.first}} {{invite.last}}</h3>
+              </ion-label>
+              <ion-icon slot="end" color="success" name="checkmark"></ion-icon>
+              <ion-icon slot="end" color="danger"  name="close"></ion-icon>
+            </ion-item>
+          </div>
+        </ion-list>
+      </ion-card>
+    </div>
+    <div class="step-text">
+      <h2>3. Draft your squad of six teams</h2>
+      <p> Each squad consists of six FBS teams. The draft will follow a "snake" format and order will be randomly determined. When drafting your squad, take into accoount strength of schedule, school conference, game locations, and CFB PICK6 projections. Keep in mind, only the total number of wins matters!
+      </p>
+    </div>
+    <div class="graphic">
+      <ion-list>
+        <ion-list-header mode="ios">DRAFT</ion-list-header>
+        <ion-item button="true" detail="true">Alabama</ion-item>
+        <ion-item button="true" detail="true">Auburn</ion-item>
+        <ion-item button="true" detail="true">Clemson</ion-item>
+        <ion-item button="true" detail="true">OhioState</ion-item>
+      </ion-list>
+    </div>
+    <div class="step-text">
+      <h2>4. Earn points for YOUR squad when your teams win!</h2>
+      <p> Every time one of your six teams wins, a point is added to your squad's total. Loses don't affect your score but are missed opportunities for W's! Never again will a Saturday game be irrelevant. Every game matters!
+      </p>
+    </div>
+    <div class="graphic">
+      <ion-item lines="none" class="scoring">
+        <ion-card class="standing-card">
+          <div class="header-box">
+            <div class="header-team">
+              <ion-card-title class="team-name" mode="ios">{{demo_team.team_name}}</ion-card-title>
+              <ion-card-subtitle mode="ios">{{demo_team.first}} {{demo_team.last}}</ion-card-subtitle>
+            </div>
+            <div class="header-team-stats">
+              <div class="team-wins-box">
+                <b class="wins-label">WINS</b>
+                <b class="wins">{{teamWins(demo_team.user_id)}}</b>
+              </div>
+
+            </div>
+          </div>
+          <div class="box-content" >
+            <div class="standing-block" *ngFor="let school of schools[demo_team.user_id]">
+              <div class="school-box">
+                <app-school [getSchool]="school"></app-school>
+              </div>
+              <div class="wins-box">
+                <b>{{school.wins}}</b>
+              </div>
+            </div>
+          </div>
+        </ion-card>
+      </ion-item>
+    </div>
+    <div class="step-text">
+      <h2>5. Compete for the Crown</h2>
+      <p> Stay up-to-date with your league every week. The following perks exist for the 1st Place squad: change the league picture, edit the league caption, and write a summary of the past week's events! The last thing to remember: cheer on your squad to victory and earn the crown!
+      </p>
+    </div>
+    <div class="graphic">
+      <ion-list class="standings-list">
+        <ion-item [hidden]="i > 2" lines="none" *ngFor="let team of teams; let i = index">
+          <div class="rank-box">
+            <div class="rank">{{i == 0 ? '👑' : i + 1 == teams.length ? '🚽' : i+1}}</div>
+          </div>
+          <ion-card class="standing-card">
+            <div class="header-box">
+              <div class="header-team" [class.first]="i == 0" [class.second]='i == 1' [class.third]='i == 2'>
+                <ion-card-title class="team-name" mode="ios">{{team.team_name}}</ion-card-title>
+                <ion-card-subtitle mode="ios">{{team.first}} {{team.last}}</ion-card-subtitle>
+              </div>
+              <div class="header-team-stats">
+                <div class="team-wins-box">
+                  <b class="wins-label">WINS</b>
+                  <b class="wins">{{teamWins(team.user_id)}}</b>
+                </div>
+              </div>
+            </div>
+          </ion-card>
+        </ion-item>
+      </ion-list>
+    </div>
+  </div>
+</ion-content>

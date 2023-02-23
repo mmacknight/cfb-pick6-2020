@@ -1,0 +1,66 @@
+<ion-header *ngIf="device_mode == 'phone'">
+  <ion-toolbar color="primary">
+    <ion-title class="title">CFB PICK6</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+<ion-content [class.phone]="device_mode == 'phone'" [class.desktop]="device_mode == 'desktop'">
+  <div class="profile-container">
+    <ion-button *ngIf="device_mode == 'desktop'" mode="md" color="primary" shape="round" routerLink="/" routerDirection="back" class="dashboard-button league-button">
+      <h2>RETURN TO DASHBOARD</h2>
+    </ion-button>
+    <ion-card class="profile-card" [class.edit]="edit" *ngIf="currentUser">
+      <ion-icon button="true" name="settings-sharp" class="settings-icon" (click)="toggleEdit()" *ngIf="device_mode == 'desktop'"></ion-icon>
+      <div class="icon-container">
+        <div class="icon-box">
+          <ion-icon name="person"></ion-icon>
+        </div>
+      </div>
+      <div class="info-container" [hidden]="edit">
+        <h1>{{currentUser.first}} {{currentUser.last}}</h1>
+        <h2>{{currentUser.username}}</h2>
+        <h2>{{currentUser.email}}</h2>
+        <ion-button mode="ios" shape="round" class="logout" (click)="toggleEdit()" *ngIf="device_mode == 'phone'"><h2>SETTINGS</h2></ion-button>
+        <ion-button mode="ios" shape="round" class="logout" (click)="logout()" color="secondary"><h2>LOGOUT</h2></ion-button>
+      </div>
+      <div class="info-container" [hidden]="!edit">
+        <ion-item class="form">
+          <ion-label position="floating"><b>First</b></ion-label>
+          <ion-input #first type="text" [value]="currentUser.first" required></ion-input>
+        </ion-item>
+        <ion-item class="form">
+          <ion-label position="floating"><b>Last</b></ion-label>
+          <ion-input #last type="text" [value]="currentUser.last" required></ion-input>
+        </ion-item>
+        <ion-item class="form">
+          <ion-label position="floating"><b>Username</b></ion-label>
+          <ion-input #username type="text" [value]="currentUser.username" required></ion-input>
+        </ion-item>
+        <ion-item class="form">
+          <ion-label position="floating"><b>Email</b></ion-label>
+          <ion-input #email type="text" [value]="currentUser.email" required></ion-input>
+        </ion-item>
+        <ion-button color="danger " shape="round" (click)="toggleEdit()"><h2>CANCEL</h2></ion-button>
+        <ion-button color="success" shape="round" (click)="submit(first.value, last.value, username.value, email.value)"><h2>SUBMIT</h2></ion-button>
+      </div>
+    </ion-card>
+    <ion-refresher #refresher slot="fixed" (ionRefresh)="refreshTeams($event)">
+      <ion-refresher-content></ion-refresher-content>
+    </ion-refresher>
+    <ion-card class="invites-card">
+        <h1>INVITES</h1>
+        <div *ngFor="let invite of invites">
+          <ion-item>
+            <ion-label>
+            <h2><b>{{invite.name}}</b></h2>
+            <h3>Manager: {{invite.username}} : {{invite.first}} {{invite.last}}</h3>
+            </ion-label>
+            <ion-icon slot="end" color="success" (click)="acceptInvite(invite.league_id)" name="checkmark"></ion-icon>
+            <ion-icon slot="end" color="danger" (click)="declineInvite(invite.league_id)" name="close"></ion-icon>
+          </ion-item>
+        </div>
+    </ion-card>
+  </div>
+</ion-content>

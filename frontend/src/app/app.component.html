@@ -1,0 +1,34 @@
+<ion-app style="height: 100vh">
+  <ion-header scroll="no" mode="md" *ngIf="device_mode == 'desktop'">
+    <app-ticker [mode]="device_mode"></app-ticker>
+  </ion-header>
+  <ion-menu *ngIf="device_mode == 'phone'" side="start" menuId="first" contentId="main" [class.phone]="device_mode == 'phone'">
+    <ion-header>
+      <ion-toolbar color="primary">
+        <ion-title class="title">MENU</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content>
+      <ion-menu-toggle auto-hide="true">
+        <ion-card class="profile" mode="md" [class.disabled]="user ? null : true">
+          <div class="profile-container">
+            <ion-icon name="person" routerLink="/profile" color="medium"></ion-icon>
+            <h2 *ngIf="user">{{user.username}}</h2>
+            <h1 *ngIf="user">{{user.first+' '+user.last}}</h1>
+            <ion-button color="primary" *ngIf="!user" [routerLink]="['/auth']" [queryParams]="{mode: 'login'}"><h2>LOGIN</h2></ion-button>
+            <ion-button color="secondary" *ngIf="!user" [routerLink]="['/auth']" [queryParams]="{mode: 'register'}"><h2>REGISTER</h2></ion-button>
+          </div>
+        </ion-card>
+      </ion-menu-toggle>
+      <ion-list *ngFor="let pages of navigate; let i = index">
+        <ion-menu-toggle auto-hide="true">
+          <ion-item [routerLink]="pages.url" [fragment]="pages.fragment" routerDirection="forward" [class.active]="router.url.includes('#'+pages.fragment) || (!router.url.includes('#') && i == 0)" lines="none">
+              <ion-icon [name]="pages.icon" slot="start"></ion-icon>
+              <h2>{{pages.title}}</h2>
+          </ion-item>
+        </ion-menu-toggle>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  <ion-router-outlet id="main" [animated]="device_mode == 'phone' ? true : false"></ion-router-outlet>
+</ion-app>

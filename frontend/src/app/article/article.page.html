@@ -1,0 +1,30 @@
+<ion-header *ngIf="device_mode == 'phone'" [class.phone]="device_mode == 'phone'">
+  <ion-toolbar color="primary">
+    <ion-title class="title">CFB PICK6</ion-title>
+    <ion-buttons slot="secondary">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content scrollEvents="true" [class.desktop]="device_mode == 'desktop'" [class.phone]="device_mode == 'phone'">
+  <div *ngIf="article" class="article-container">
+    <ion-button *ngIf="device_mode == 'desktop'" shape="round" class="back-button" color="lighter" routerLink="/" fragment="media" routerDirection="back">
+      <ion-icon slot="start" color="dark" name="arrow-back"></ion-icon>
+      <h2>RETURN TO DASHBOARD</h2>
+    </ion-button>
+    <div class="backdrop" [style.backgroundImage]="'url(https://s3.us-east-2.amazonaws.com/cfbpick6.images/article-'+route.snapshot.paramMap.get('id')+')'">
+      <div class="backdrop-cover"></div>
+      <h1 class="article-title">{{article.title | uppercase}}</h1>
+    </div>
+    <div class="credentials">
+      <img class="author-avatar" [src]="'https://s3.us-east-2.amazonaws.com/cfbpick6.images/author-'+article.author_id" onerror="this.onerror=null; this.src='/assets/images/profile.png'">
+      <div class="text">
+        <h2>{{article.author_name}}</h2>
+        <h2>{{article.author_role}}</h2>
+      </div>
+    </div>
+    <div [innerHTML]="article.content" class="article-content" (domChange)="loadTweets()">
+    </div>
+  </div>
+</ion-content>

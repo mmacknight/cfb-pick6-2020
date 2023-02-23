@@ -1,0 +1,8 @@
+<div class="container" (domChange)="onDomChange($event)">
+  <div class="percent" [class.mini]="mini" [style.borderColor]="color">
+    <h1 [style.color]="color">{{percent}}<div class="sign">%</div></h1>
+  </div>
+  <div [id]="'pie'+school_id" *ngIf="school_id" class="donut" [class.mini]="mini">
+    <svg></svg>
+  </div>
+</div>

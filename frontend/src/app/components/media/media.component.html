@@ -1,0 +1,10 @@
+<ion-card class="list-header">
+  <h1>MEDIA</h1>
+</ion-card>
+<ion-card *ngFor="let article of articles" class="article-card" [class.phone]="device_mode == 'phone'">
+  <img [src]="'https://s3.us-east-2.amazonaws.com/cfbpick6.images/article-'+article['id']">
+  <div class="info" [routerLink]="['/article', article.id]">
+    <h1>{{article['title'] | uppercase}}</h1>
+    <h2>{{article['tease']}}</h2>
+  </div>
+</ion-card>

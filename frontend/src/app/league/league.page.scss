@@ -1,0 +1,1033 @@
+ion-header.phone {
+  .background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  ion-toolbar {
+    height: 200px;
+    transition: height 0.5s;
+    .title {
+      font-size: 16px;
+    }
+  }
+  ion-toolbar.inactive {
+    height: 44px;
+  }
+
+  .segment-container {
+    position: absolute;
+    top: 44px;
+    z-index: 10;
+    width: 100%;
+    padding: 1% 2.5%;
+    background: transparent;
+    transition: background 0s;
+    transition-delay: 0s;
+    box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+    ion-segment {
+      width: 100%;
+    }
+  }
+
+  .segment-container.inactive {
+    transition: background 0s;
+    transition-delay: 0.5s;
+    background: var(--ion-color-light);
+  }
+
+  .header-image {
+    top: 88px;
+    position: absolute;
+    width: 100%;
+    display: block;
+    max-height: 200px;
+    transition: max-height 0s;
+    transition-delay: 0.5s;
+    img {
+      position: relative;
+      object-fit: cover;
+      height: 200px;
+      width: 200px;
+      border-radius: 5px;
+      z-index: 10;
+      opacity: 1;
+      transition: opacity 0.5s;
+    }
+    img.inactive {
+      opacity: 0;
+    }
+  }
+  .header-image.inactive {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s;
+    transition-delay: 0.5s;
+  }
+}
+
+.phone {
+  .league-image {
+    min-width: 150px;
+    height: 150px;
+  }
+
+  .league-data {
+    padding: 0px 0px 0px 10px;
+  }
+
+  .league-header {
+    padding: 10px;
+    .league-name {
+      h1 {
+        color: var(--ion-color-dark-tint) !important;
+      }
+    }
+
+    .league-admin {
+      h2 {
+        color: var(--ion-color-dark-tint);
+      }
+    }
+
+    .league-team-count {
+      h2 {
+        color: var(--ion-color-dark-tint);
+      }
+    }
+
+    .league-info {
+      color: var(--ion-color-dark-tint);
+    }
+  }
+
+  .league-container {
+    padding: 96px 0 44px 0;
+  }
+
+  .league-container.inactive {
+    padding: 38px 0 20px 0;
+  }
+
+  .score-game {
+    position: relative;
+    width: 48.75%;
+    margin: 0.625%
+  }
+
+  .league-content {
+    padding: 0;
+  }
+
+  .league-header {
+    height: auto;
+  }
+
+  .home-messages-list {
+    width: 100%;
+  }
+
+  .week-select-box {
+    padding: 10px;
+  }
+
+  .myteams-scoreboard {
+    width: 100%;
+  }
+
+  ion-select.week-select {
+    width: 100px;
+    right: 0;
+    bottom: 0;
+    font-size: 16px;
+
+    border-radius: 15px;
+  }
+
+  .team-score {
+    width: 97.5%;
+  }
+
+  .standings-list {
+    width: 100%;
+    .heading {
+      padding: 10px;
+    }
+    .rank {
+      padding-right: 8px;
+    }
+  }
+
+
+  .myteams {
+    width: 100%;
+    min-width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    margin: 0 auto 0 auto;
+    padding: 0;
+  }
+
+  .myteams-scoreboard {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 8px;
+  }
+
+  .myteams-header {
+    font-family: var(--ion-font-family);
+    font-weight: 700;
+    font-size: 18px;
+    width: 100%;
+  }
+
+  .myteams-container {
+    margin: 1.25%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+  }
+
+  .myteams-score-game {
+    position: relative;
+    width: 100%;
+    height: auto;
+    margin: 2px;
+  }
+  .switch-button {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    font-size: 24px;
+  }
+  .marker-box {
+    width: 100%;
+    height: 44px;
+    display: -webkit-box;
+    display: flex;
+    position: relative;
+    bottom: 0;
+    align-items: center;
+    background: rgba(150,150,150,0.4);
+  }
+
+  .team-score {
+    transition: max-height 0.25s;
+    max-height: 800px;
+    .score-header {
+      padding: 0px 35px 0 10px;
+    }
+  }
+
+  .team-score.score_display {
+    max-height: 70px;
+  }
+
+  .myteams-scoreboard {
+    padding: 5px;
+  }
+
+  .score_display {
+    .score-header {
+      h1 {
+        text-overflow: ellipsis;
+        overflow: hidden;
+        white-space: nowrap;
+      }
+    }
+  }
+
+  .league-admin {
+    text-align: center;
+  }
+  .league-info {
+    overflow-x: auto;
+    white-space: pre-wrap;
+    white-space: -moz-pre-wrap;
+    white-space: -pre-wrap;
+    white-space: -o-pre-wrap;
+    word-wrap: break-word;
+    padding: 20px 0px;
+    margin: 20px 40px;
+    text-align: justify;
+    border-bottom: solid thin var(--ion-color-dark-tint);
+  }
+
+  ion-select.week-select {
+    position: absolute;
+    background: transparent;
+    color: var(--ion-color-primary);
+    font-size: 14px;
+    padding: 5px 15px 5px 5px;
+    width: auto;
+  }
+}
+
+.desktop {
+  .league-name {
+    color: var(--ion-color-primary-contrast);
+  }
+
+  .score-game {
+    position: relative;
+    width: 32.083%;
+    margin: 0.625%
+  }
+
+  .home-messages-list {
+    width: 67%;
+  }
+
+  .myteams-scoreboard {
+    width: 100%;
+  }
+
+  .team-score {
+    width: 315px;
+    margin: 5px 20px 5px 5px;
+    display: inline-block;
+    align-self: flex-end;
+  }
+
+  .myteams-scoreboard {
+    min-width: 720px;
+    width: 720px;
+    padding: 0;
+  }
+
+}
+
+ion-content {
+    --background: var(--ion-color-light);
+}
+
+.league-name {
+  width: 100%;
+}
+
+.league-container {
+  width: 100%;
+}
+
+.league-header {
+  position: relative;
+  width: 100%;
+  padding: 0;
+  display: flex;
+  color: var(--ion-color-primary-contrast);
+}
+
+.settings-button {
+  bottom: 89.8px;
+}
+
+.settings-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 25px;
+  cursor: pointer;
+}
+.desktop {
+  .settings-icon:hover {
+    color: var(--ion-color-primary);
+  }
+}
+
+.squad-button {
+  position: relative;
+  width: 50%;
+  font-size: 40px;
+  cursor: pointer;
+}
+
+.dashboard-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: 20px;
+  z-index: 10;
+  h2 {
+    color: var(--ion-color-primary);
+  }
+}
+
+.league-header-cover {
+  position: absolute;
+  width: 100%;
+  height: 250px;
+  z-index: -1;
+}
+
+.trapezoid {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-bottom: 250px solid;
+  border-right: 0 solid transparent;
+  border-left: 166.667px solid transparent;
+  border-bottom-color: var(--ion-color-primary);
+  width: 40%;
+}
+
+.league-data {
+  font-family: var(--ion-font-family);
+  display: block;
+  width: 100%;
+  overflow: visible;
+  z-index: 2;
+  font-size: 20px;
+  padding: 20px;
+}
+
+.league-info {
+  font-size: 16px;
+  padding: 20px 0px;
+  color: var(--ion-color-dark-tint);
+}
+.league-image {
+  min-width: 200px;
+  min-height: 200px;
+  width: 200px;
+  height: 200px;
+  box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+  background-position: center;
+  background-size: cover;
+  z-index: 2;
+  position: relative;
+  border-radius: 5px;
+  margin: 25px;
+}
+
+.league-admin {
+  text-align: left;
+  h2 {
+    color: var(--ion-color-dark-tint);
+  }
+}
+
+.league-team-count {
+  font-family: var(--ion-font-family);
+  font-size: 16px;
+  font-weight: 700;
+  text-align: left;
+  min-width: 10%;
+}
+
+
+.segment {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+ion-item {
+  --background: none;
+}
+.home-messages-list > ion-item {
+  width: 100%;
+}
+
+.home-box ion-item > ion-card {
+  width: 100%;
+  margin: 8px 4px;
+}
+
+.home-message {
+  overflow: hidden;
+  height: auto;
+  transition: max-height 0.5s, padding 0.5s;
+  font-size: 16px;
+  white-space: pre-wrap;
+  white-space: -moz-pre-wrap;
+  white-space: -pre-wrap;
+  white-space: -o-pre-wrap;
+  word-wrap: break-word;
+}
+
+.home-standings-list {
+  width: 33%
+}
+
+.home-standings-list > ion-item {
+  width: 100%;
+}
+
+.home-box .header-team {
+  width: 100%;
+}
+
+
+.home-box h4 {
+  font-weight: 700;
+  font-family: var(--ion-font-family);
+  width: 100%;
+}
+
+.week-select-box {
+  position: absolute;
+  right: 20px;
+  bottom: 5px;
+  // padding: 16px 10%;
+  display: flex;
+}
+
+.week-select {
+  background: var(--ion-color-primary-tint);
+  color: var(--ion-color-primary-contrast);
+  // z-index: 10;
+  position: relative;
+  width: 150px;
+  // height: 44px;
+  right: 0;
+  // bottom: 10.25px;
+  // bottom: 5px;
+  border-radius: 20px;
+  font-weight: 550;
+  --padding-bottom: 0px;
+  --padding-top:    0px;
+  --padding-end:    0px;
+  --padding-start:  0px;
+  padding: 8.5px 8.5px 8.5px 12px;
+}
+
+.league-content {
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  padding: 0 60px 0 120px;
+  position: relative;
+}
+
+.league-content > h1 {
+  width: 100%;
+}
+
+.standings-list ion-item {
+  width: 60%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.standing-games {
+  width: 40%;
+  display: flex;
+  flex-wrap: wrap;
+  overflow-y: hidden;
+  padding: 10px;
+  transition: height 0.25s;
+}
+
+.open {
+  height: 270px;
+}
+
+.closed {
+  height: 90px;
+}
+
+.standings-games > .score-block {
+  width: 50%;
+}
+
+.first {
+  background: #D4AF37;
+  background-image: linear-gradient(rgba(255,255,255,0.3), rgba(0,0,0,0.1));
+}
+
+.second {
+  background: silver;
+  background-image: linear-gradient(rgba(255,255,255,0.3), rgba(0,0,0,0.1));
+}
+
+.third {
+  background-color: #cd7f32;
+  background-image: linear-gradient(rgba(255,255,255,0.3), rgba(0,0,0,0.1));
+}
+
+.first ion-card-subtitle, .second ion-card-subtitle, .third ion-card-subtitle {
+  color: black;
+}
+
+.standing-block {
+  position: relative;
+  width: 100%;
+  display: inline-flex;
+}
+
+.myteams {
+  width: 1060px;
+  min-width: 1060px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 auto 0 auto;
+  padding: 0 !important;
+}
+
+.myteams-item {
+    width: 45%;
+    margin: 2.5%
+}
+
+.myteams-scoreboard {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 8px;
+}
+
+.myteams-header {
+  font-family: var(--ion-font-family);
+  font-weight: 700;
+  font-size: 18px;
+  width: 100%;
+}
+
+.myteams-container {
+  margin: 1.25%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.myteams-score-game {
+  position: relative;
+  width: 230px;
+  height: 230px;
+  margin: 5px;
+}
+
+.school-box {
+  width: 85%;
+  position: relative;
+}
+
+.wins-box {
+  border-left-style: solid;
+  border-left-width: 0.5px;
+  border-left-color: gray;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+  font-family: calibri;
+  width: 15%;
+  position: absolute;
+  right: 0%;
+  font-size: 20px;
+  text-align: right;
+  padding-top: 2px;
+  padding-right: 10px;
+  color: #606060;
+  height: 100%;
+  margin: auto;
+}
+
+b {
+  margin: auto;
+}
+
+.standing-card {
+  // margin: 10px;
+  width: 90%;
+  margin: 0 0 10px 0;
+  border-radius: 15px;
+}
+
+.home-standings-list {
+    .standing-card {
+      width: 100%;
+      margin: 10px 0;
+    }
+}
+
+.standings-list {
+  width: 60%;
+}
+
+.first h2, .second h2, .third h2 {
+  color: var(--ion-color-dark-tint);
+}
+
+.header-box {
+  width: 100%;
+  display: flex;
+  position: relative;
+  background: white;
+}
+
+.header-team {
+  padding: 16px 16px 12px 16px;
+  width: 85%;
+}
+
+.header-team-stats {
+  width: 15%;
+  color: gray;
+  position: relative;
+  border-left-style: solid;
+  border-left-color: gray;
+}
+
+.team-wins-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.wins-label {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  padding-top: 4px;
+  top: 0;
+  height: 30%;
+  font-size: 12px;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+}
+
+.wins {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  h1 {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+  }
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+
+}
+
+.rank-box {
+  position: relative;
+  width: 10%;
+}
+
+.rank {
+  margin: 0;
+  position: relative;
+  top: 50%;
+  -ms-transform: translateY(-50%);
+  transform: translateY(-50%);
+  width: 100%;
+  text-align: center;
+}
+
+.team-name {
+  font-size: 20px;
+}
+
+.box-content {
+  position: relative;
+  margin-left: 15%;
+  width: 85%;
+  height: 0;
+  transition: height 0.25s;
+}
+
+.team-score {
+  width: 97.5%;
+  border-radius: 20px;
+  margin: 1.25%;
+  border-style: none;
+  border-width: thin;
+  border-color: var(--ion-color-medium);
+  background: white;
+  position: relative;
+  padding: 8px;
+  ion-item.team-score-item {
+    padding: 0 5px 10px 10px;
+    --padding-start: 0;
+    h1 {
+      position: absolute;
+      right: 0;
+    }
+  }
+}
+
+.score-col {
+  padding: 4px;
+}
+
+.games {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+  display: flex;
+  flex-wrap: wrap;
+  padding-bottom: 15px;
+}
+
+.score-header {
+  width: 100%;
+  padding: 10px;
+  height: 115px;
+}
+
+.score-block {
+  width: 50%;
+  border-color: var(--ion-color-medium);
+  background-size: cover;
+  background-position: center;
+}
+
+.score-block-container {
+  border-radius: 5px 5px 5px 5px;
+  overflow: hidden;
+}
+
+.score-block-game {
+  width: 100%;
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.game-schools {
+  width: 85%;
+}
+
+.game-detail {
+  width: 100%;
+  font-size: 12px;
+  text-align: center;
+  font-weight: 700;
+  background: var(--ion-color-medium-tint);
+  color: black;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+}
+
+.score-block-bye {
+  width: 100%;
+  position: relative;
+}
+
+.winner {
+  background: var(--ion-color-success-shade);
+  color: var(--ion-color-success-contrast);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+}
+
+.loser {
+  background: var(--ion-color-danger-shade);
+  color: var(--ion-color-danger-contrast);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+}
+
+.game-score-box {
+  width: 15%;
+  text-align: center;
+  height: 50px;
+}
+
+.game-score {
+  width: 100%;
+  height: 50%;
+  font-size: 20px;
+  color: black;
+  font-weight: 700;
+  background: var(--ion-color-light);
+  background-image: linear-gradient(rgba(255, 255, 255, 0.3), rgba(0, 0, 0, 0.1));
+}
+
+.myteams {
+  app-school-alt {
+    margin: 0;
+  }
+  .school-div {
+    padding: 1px;
+  }
+}
+
+ion-card.score-card {
+  width: 100%;
+  background-color: white;
+  --background: white;
+  border-radius: 20px;
+  margin: 0;
+  position: relative;
+}
+
+.standing-box {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  padding: 10px 10px 0px 10px;
+  width: 100%;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.standing-box {
+  .school-div {
+    padding: 1px 0;
+  }
+  app-school-alt {
+    width: 100%;
+    margin: 0;
+  }
+}
+
+.standing-box:hover {
+  background: var(--ion-color-light-tint);
+}
+
+.slide-container {
+  display: flex;
+  position: relative;
+  font-family: sans-serif;
+  scroll-snap-type: x mandatory;
+  display: flex;
+  -webkit-overflow-scrolling: touch;
+  overflow-x: scroll;
+  overflow-y: visible;
+  padding-bottom: 10px;
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.slide-container::-webkit-scrollbar {
+  display: none;
+}
+
+.marker-box {
+  width: 100%;
+  height: 44px;
+  display: flex;
+  .first {
+    margin-left: auto !important;
+  }
+  .last {
+    margin-right: auto !important;
+  }
+  .mark {
+    width: 8px;
+    height: 8px;
+    border-radius: 8px;
+    margin: 0 6px;
+    background: var(--ion-color-medium);
+  }
+  .active {
+    background: var(--ion-color-primary) !important;
+  }
+}
+
+.scoreboard {
+  position: relative;
+  .left-arrow {
+    position: absolute;
+    top: 40%;
+    left: 60px;
+    ion-icon {
+      font-size: 36px;
+    }
+  }
+  .right-arrow {
+    position: absolute;
+    top: 40%;
+    right: 60px;
+    ion-icon {
+      font-size: 36px;
+    }
+  }
+}
+
+
+.scoreboard-container {
+  min-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+}
+
+
+.nav-bar {
+  width: 100%;
+  display: flex;
+  border-bottom: solid 3px var(--ion-color-primary);
+  margin: 20px 0;
+  position: relative;
+  .first-link.nav-link {
+    margin-left: 60px;
+  }
+  .nav-link {
+    text-decoration: none;
+    padding: 10px 20px;
+    color: var(--ion-color-medium-shade);
+    cursor: pointer;
+  }
+  .nav-link:hover, .active {
+    h2 {
+      color: var(--ion-color-primary) !important;
+    }
+  }
+}
+
+.league-bar-background {
+  height: 150px;
+  margin-bottom: 100px;
+  width: 100%;
+  position: relative;
+  background-size: cover;
+  background-position: 50% 20%;
+  padding: 35px 0 15px 35px;
+  display: flex;
+  .league-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--ion-color-primary-shade);
+    opacity: 0.75;
+    z-index: 1;
+  }
+  .league-name {
+    z-index: 10;
+  }
+  .league-image {
+    min-width: 200px;
+    min-height: 200px;
+    width: 200px;
+    height: 200px;
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.4);
+    background-position: center;
+    background-size: cover;
+    z-index: 2;
+    position: relative;
+    border-radius: 5px;
+    margin: 0;
+  }
+  .league-data {
+    width: 80%;
+    padding: 0 0 0 15px;
+    h1.league-name {
+      margin: 0 0 10px 0;
+      color: white;
+      font-size: 30px;
+    }
+    .league-team-count {
+      margin-top: 20px;
+    }
+    .league-info {
+      color: var(--ion-color-medium-shade);
+      font-size: 18px;
+      padding: 15px 0;
+    }
+    h2.league-admin {
+      margin: 45px 0 5px 0;
+      color: white;
+    }
+  }
+}
+
+ion-footer {
+  ion-toolbar {
+    --padding-bottom:	0px;
+    --padding-end: 0px;
+    --padding-start: 0px;
+    --padding-top: 0px;
+  }
+}

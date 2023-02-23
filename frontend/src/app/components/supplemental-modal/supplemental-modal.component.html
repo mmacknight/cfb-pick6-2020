@@ -1,0 +1,14 @@
+<div style="padding: 20px;">
+  <h1 *ngIf="done">WAIT FOR OTHERS</h1>
+  <ion-icon *ngIf="done" button="true" class="refresh-icon" name="refresh" (click)="refresh()"></ion-icon>
+  <ion-list *ngIf="!done">
+    <h1>REASSIGNMENT (2)</h1>
+    <ion-item *ngFor="let school of schools['picks'];let i = index;">
+      <app-school-alt  [getSchool]="school" [getNumber]="school.wins" style="width: 90%;">
+      </app-school-alt>
+      <h2 style="width: 10%;">{{school.pick}}</h2>
+      <ion-checkbox slot="start" [(ngModel)]="checked[i]" [disabled]="isFull && !checked[i]" (ionChange)="checkSum()"></ion-checkbox>
+    </ion-item>
+  </ion-list>
+  <ion-button expand="block" [disabled]="!isFull" *ngIf="!done" (click)="insertSupplemental()"><h2>LOCK</h2></ion-button>
+</div>

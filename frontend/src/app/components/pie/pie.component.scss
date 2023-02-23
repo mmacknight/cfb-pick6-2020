@@ -1,0 +1,53 @@
+.container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 92px;
+  margin-top: 8px;
+}
+
+.percent {
+  margin: auto;
+  position: relative;
+  height: 69px;
+  width: 69px;
+  border-radius: 69px;
+  border-style: solid;
+  border-width: thin;
+  // padding: 34px 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  h1 {
+    position: relative;
+    .sign {
+      position: absolute;
+      right: -12px;
+      bottom: 3px;
+      font-size: 12px
+    }
+  }
+}
+
+.percent.mini {
+  margin: none;
+  position: absolute;
+  top: calc(50% - 25px);
+  left: calc(50% - 25px);
+  width: 60px;
+  height: 60px;
+  border-radius: 60px;
+}
+
+.donut {
+  position: absolute;
+  margin: auto;
+  top: 0;
+  left: calc(50% - 46px);
+}
+
+.donut.mini {
+  top: calc(50% - 35px) !important;
+  left: calc(50% - 35px) !important;
+}
