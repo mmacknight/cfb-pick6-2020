@@ -2,7 +2,7 @@
 
 ## Description
 
-CFB PICK6 is a college football fantasy app that allows users to create leagues and invite their friends to join. The app includes a six round snake draft in which the users take turns selecting FBS college football teams. The league members will then follow the league standings to see who's six team squad will accumulate the most wins over the course of the season.
+College Football PICK6 (aka CFB PICK6) is a college football fantasy game that was launched in 2019. The game provides a fun and engaging way for college football fans to compete with their friends and showcase their knowledge of the sport. The game starts with a six round snake draft in which users take turns selecting FBS college football teams. League members then follow the league standings to see whose six-team squad will accumulate the most wins over the course of the season.
 
 ## Installation
 
